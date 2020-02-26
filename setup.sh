@@ -1,7 +1,3 @@
-
-$MAPD_PASSWORD = 
-$ECCC_PASSWORD = 
-
 # ------------------------------------------------------------------------------
 # Firewalld Installation
 sudo yum install -y firewalld
@@ -88,10 +84,7 @@ sudo chown -R centos:centos .
 git clone https://github.com/Julien-Cousineau/meit2020.git .
 npm install
 
-# Create nodeJS Meit service
-sudo cp meit.service /etc/systemd/system/meit.service
-systemctl start meit.service
-systemctl enable meit.service
+
 
 
 # ------------------------------------------------------------------------------
@@ -120,3 +113,7 @@ npm upload-latest
 # 
 
 
+# Create nodeJS Meit service
+sudo cp meit.service /etc/systemd/system/meit.service
+systemctl start meit.service
+systemctl enable meit.service

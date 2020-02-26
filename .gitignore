@@ -110,3 +110,5 @@ dist
 *.csv2
 *.mbtiles
 *.geojson
+*.hex
+setSecret.sh

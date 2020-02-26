@@ -1,4 +1,3 @@
-require('dotenv').config()
 const azure = require('azure-storage');
 const blobSvc = azure.createBlobService();
 const prettyBytes = require('pretty-bytes');
