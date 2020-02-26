@@ -5,8 +5,10 @@ const blobSvc = azure.createBlobService();
 const path = require('path');
 
 
-const name = "pacific_growth_factors_02062018.csv"
-const file = path.join('data','ship',name);
+// const name = "arctic_voc_2019-03-18b.csv"
+// const name = "east_voc_2019-03-18b.csv"
+const name = "pacific_voc_2019-03-18b.csv"
+const file = path.join('data','csv',name);
 
 if (!fs.existsSync(file))throw new Error("File does not exist")
 
