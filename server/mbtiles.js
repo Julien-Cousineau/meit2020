@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path')
-const mbtiles = require('mbtiles');
+const mbtiles = require('@mapbox/mbtiles');
 const express = require('express');
 
 const MBTILESFOLDER =  path.join(__dirname, 'data/mbtiles');
