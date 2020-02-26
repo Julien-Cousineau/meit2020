@@ -75,43 +75,21 @@ sudo yum install -y nodejs
 echo "
 export MEIT_PATH=/meit
 export MEIT_MBTILES=/meit/data/mbtiles
-export MEIT_CSV2=/meit/data/csv2
+export MEIT_CSV=/meit/data/csv
 export MEIT_PORT=8080
 " >> ~/.bashrc
 
 source ~/.bashrc
 
-# Create folders
-mkdir -R $MEIT_PATH
-mkdir -R $MEIT_MBTILES
-mkdir -R $MEIT_CSV
-
 # Clone repo and install npm packages
-cd MEIT_PATH
-git clone https://github.com/Julien-Cousineau/testing.git .
+sudo mkdir -p $MEIT_PATH
+cd $MEIT_PATH
+sudo chown -R centos:centos .
+git clone https://github.com/Julien-Cousineau/meit2020.git .
 npm install
 
-# Create nodeJS service
-echo "
-[Unit]
-Description=MEIT Server
-
-[Service]
-ExecStart=/usr/local/bin/node /meit/server/index.js
-# Required on some systems
-WorkingDirectory=/meit
-Restart=always
-# Restart service after 10 seconds if node service crashes
-RestartSec=10
-
-# Output to syslog
-StandardOutput=syslog
-StandardError=syslog
-SyslogIdentifier=meit-server
-
-Environment=NODE_ENV=production PORT=8080
-" >> /etc/systemd/system/meit.service
-
+# Create nodeJS Meit service
+sudo cp meit.service /etc/systemd/system/meit.service
 systemctl start meit.service
 systemctl enable meit.service
 
