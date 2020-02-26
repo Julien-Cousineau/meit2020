@@ -1,6 +1,6 @@
 {
-    "development":{
-      "2015":[
+   "2015":{
+    "development":[
         {"azure":"arctic_emissions_2019-04-25","local":"csv/arctic_emissions_2019-04-25.zip"},
         {"azure":"pacific_emissions_2019_04_25","local":"csv/pacific_emissions_2019_04_25.zip"},
         {"azure":"east_emissions_2019-04-25","local":"csv/east_emissions_2019-04-25.zip"},
@@ -8,9 +8,7 @@
         {"azure":"east_voc_2019-03-18b.csv","local":"csv/east_voc_2019-03-18.csv"},
         {"azure":"pacific_voc_2019-03-18b.csv","local":"csv/pacific_voc_2019-03-18.csv"}
         ]
-      },
-    "production":{
-       "2015":[
+    "production":[
         {"azure":"arctic_emissions_2019-04-25.2.zip","local":"csv/arctic_emissions_2019-04-25.2.zip"},
         {"azure":"pacific_emissions_2019_04_25.2.zip","local":"csv/pacific_emissions_2019_04_25.2.zip"},
         {"azure":"east_emissions_2019-04-25.2.zip","local":"csv/east_emissions_2019-04-25.2.zip"}

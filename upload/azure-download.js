@@ -25,6 +25,7 @@ Object.keys(FILES).forEach(key=>{
         });
       }));
     if(err)throw err;
+    return true;
   }
 
 });

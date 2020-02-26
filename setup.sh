@@ -85,8 +85,6 @@ git clone https://github.com/Julien-Cousineau/meit2020.git .
 npm install
 
 
-
-
 # ------------------------------------------------------------------------------
 # Nginx
 # Installation
@@ -106,11 +104,9 @@ sudo firewall-cmd --reload
 # ------------------------------------------------------------------------------
 # Download vector tiles and latest csv2 for application (.mbtiles and data)
 # 
-npm download-mbtiles
-npm download-latest
-npm upload-latest
-# Transfer csv2 to database
-# 
+npm run azure-download
+npm run download-production
+
 
 
 # Create nodeJS Meit service

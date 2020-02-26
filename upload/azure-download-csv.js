@@ -6,14 +6,15 @@ const blobSvc = azure.createBlobService();
 
 const to=(promise)=>promise.then(data => [null, data]).catch(err => [err]);
 
+const MEIT_YEAR = process.env.MEIT_YEAR;
 const NODE_ENV = process.env.NODE_ENV;
 const jsonPath = path.join('data','csv.json');
 
 
 let rawdata = fs.readFileSync(jsonPath);
-let FILES = JSON.parse(rawdata);
+let json = JSON.parse(rawdata);
 
-const group = FILES[NODE_ENV];
+const group = json[MEIT_YEAR][NODE_ENV];
   
 group.forEach(async (item)=>{
   const name = item.azure; 
