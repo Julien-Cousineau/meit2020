@@ -1,0 +1,144 @@
+
+$MAPD_PASSWORD = 
+$ECCC_PASSWORD = 
+
+# ------------------------------------------------------------------------------
+# Firewalld Installation
+sudo yum install -y firewalld
+sudo systemctl enable firewalld
+# sudo reboot ->Best practice
+sudo firewall-cmd --reload
+
+# ------------------------------------------------------------------------------
+# OmniSci Installation
+# https://docs.omnisci.com/v4.4.1/4_centos7-yum-cpu-ce-recipe.html
+# Please note that it does not work with the latest version, v5
+
+
+# Create the OmniSci User
+sudo yum update
+sudo useradd -U mapd
+
+# Firewall rules
+sudo firewall-cmd --zone=public --add-port=9092/tcp --permanent
+sudo firewall-cmd --reload
+
+# Installation
+curl https://releases.mapd.com/ce/mapd-ce-cpu.repo | sudo tee /etc/yum.repos.d/mapd.repo
+sudo yum install -y mapd
+
+# Set Environment Variables 
+echo "
+export MAPD_USER=mapd
+export MAPD_GROUP=mapd
+export MAPD_STORAGE=/var/lib/mapd
+export MAPD_PATH=/opt/mapd
+export MAPD_LOG=/var/lib/mapd/data/mapd_log
+export DBNAME=meit
+" >> ~/.bashrc
+
+source ~/.bashrc
+
+# Initialization
+cd $MAPD_PATH/systemd
+sudo ./install_mapd_systemd.sh
+
+# Activation
+cd $MAPD_PATH
+sudo systemctl start mapd_server
+sudo systemctl start mapd_web_server
+
+sudo systemctl enable mapd_server
+sudo systemctl enable mapd_web_server
+
+# Testing
+cd $MAPD_PATH
+sudo ./insert_sample_data
+
+# User and databases
+cd $MAPD_PATH
+echo "
+ALTER USER mapd (password = '$MAPD_PASSWORD');
+CREATE USER eccc (password = '$ECCC_PASSWORD', is_super = 'false');
+CREATE DATABASE meit (owner = 'eccc');
+" | bin/mapdql mapd -u mapd -p HyperInteractive
+
+# ------------------------------------------------------------------------------
+# Git and NodeJS
+sudo yum install -y git
+curl -sL https://rpm.nodesource.com/setup_10.x | sudo bash -
+sudo yum install -y nodejs
+
+# ------------------------------------------------------------------------------
+# MEIT Application
+# Set Environment Variables 
+echo "
+export MEIT_PATH=/meit
+export MEIT_MBTILES=/meit/data/mbtiles
+export MEIT_CSV2=/meit/data/csv2
+export MEIT_PORT=8080
+" >> ~/.bashrc
+
+source ~/.bashrc
+
+# Create folders
+mkdir -R $MEIT_PATH
+mkdir -R $MEIT_MBTILES
+mkdir -R $MEIT_CSV
+
+# Clone repo and install npm packages
+cd MEIT_PATH
+git clone https://github.com/Julien-Cousineau/testing.git .
+npm install
+
+# Create nodeJS service
+echo "
+[Unit]
+Description=MEIT Server
+
+[Service]
+ExecStart=/usr/local/bin/node /meit/server/index.js
+# Required on some systems
+WorkingDirectory=/meit
+Restart=always
+# Restart service after 10 seconds if node service crashes
+RestartSec=10
+
+# Output to syslog
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=meit-server
+
+Environment=NODE_ENV=production PORT=8080
+" >> /etc/systemd/system/meit.service
+
+systemctl start meit.service
+systemctl enable meit.service
+
+
+# ------------------------------------------------------------------------------
+# Nginx
+# Installation
+sudo yum install -y epel-release
+sudo yum install -y nginx
+
+# Activation
+sudo systemctl start nginx
+sudo systemctl enable nginx
+
+# Firewall rules
+sudo firewall-cmd --permanent --zone=public --add-service=http 
+sudo firewall-cmd --permanent --zone=public --add-service=https
+sudo firewall-cmd --reload
+
+
+# ------------------------------------------------------------------------------
+# Download vector tiles and latest csv2 for application (.mbtiles and data)
+# 
+npm download-mbtiles
+npm download-latest
+npm upload-latest
+# Transfer csv2 to database
+# 
+
+
