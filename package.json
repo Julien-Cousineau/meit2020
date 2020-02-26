@@ -7,7 +7,8 @@
     "process": "node process/index.js",
     "azure-list": "node upload/azure-list.js",
     "azure-download": "node upload/azure-download.js",
-    "download-mbtiles": "node upload/azure-download.js",
+    "download-production": "NODE_ENV=production node upload/azure-download-csv.js",
+    "download-development": "NODE_ENV=development node upload/azure-download-csv.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
