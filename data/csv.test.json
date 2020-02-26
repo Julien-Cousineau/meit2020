@@ -1,0 +1,9 @@
+{
+   "2015":{
+    "development":[
+        {"azure":"arctic_voc_2019-03-18b.zip","local":"csv/arctic_voc_2019-03-18b.zip"}
+
+        ]
+    }
+   
+}

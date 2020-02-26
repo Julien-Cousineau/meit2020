@@ -7,8 +7,9 @@
     "process": "node process/index.js",
     "azure-list": "node upload/azure-list.js",
     "azure-download": "node upload/azure-download.js",
-    "download-production-2015": "MEIT_YEAR=2015 NODE_ENV=production node upload/azure-download-csv.js",
+    "download-development-2015-test": "MEIT_CSVT=csv.test.json MEIT_YEAR=2015 NODE_ENV=development node upload/azure-download-csv.js",
     "download-development-2015": "MEIT_YEAR=2015 NODE_ENV=development node upload/azure-download-csv.js",
+    "download-production-2015": "MEIT_YEAR=2015 NODE_ENV=production node upload/azure-download-csv.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -20,6 +21,7 @@
     "async": "^3.2.0",
     "azure-storage": "^2.10.3",
     "body-parser": "^1.19.0",
+    "cli-progress": "^3.6.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "geojson": "^0.5.0",
