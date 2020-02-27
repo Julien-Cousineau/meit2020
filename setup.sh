@@ -48,8 +48,8 @@ sudo systemctl enable mapd_server
 sudo systemctl enable mapd_web_server
 
 # Testing
-cd $MAPD_PATH
-sudo ./insert_sample_data
+# cd $MAPD_PATH
+# sudo ./insert_sample_data
 
 # User and databases
 cd $MAPD_PATH
@@ -57,6 +57,8 @@ echo "
 ALTER USER mapd (password = '$MAPD_PASSWORD');
 CREATE USER eccc (password = '$ECCC_PASSWORD', is_super = 'false');
 CREATE DATABASE meit (owner = 'eccc');
+CREATE USER public (password = 'password', is_super = 'false',default_db='meit);
+GRANT ACCESS, SELECT ON DATABASE meit TO public;
 " | bin/mapdql mapd -u mapd -p HyperInteractive
 
 # ------------------------------------------------------------------------------
@@ -100,13 +102,28 @@ sudo firewall-cmd --permanent --zone=public --add-service=http
 sudo firewall-cmd --permanent --zone=public --add-service=https
 sudo firewall-cmd --reload
 
+# Copy template
+# 
+
+
+# ------------------------------------------------------------------------------
+# SSH KEY (development)
+# 
+# 
+# 
+
+
+
 
 # ------------------------------------------------------------------------------
 # Download vector tiles and latest csv2 for application (.mbtiles and data)
 # 
 npm run azure-download
-npm run download-production
+npm run download-production-2015
+npm run data2db-2015
 
+# For development
+#npm run download-development-2015
 
 
 # Create nodeJS Meit service

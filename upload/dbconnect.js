@@ -1,9 +1,10 @@
 const fs = require('fs');
 const Connector = require("./node-connector");
 
+
 const DBNAME = process.env.DBNAME;
 const USER = process.env.MAPD_USER;
-const PASSWORD = process.env.MAPD_USER.MAPD_PASSWORD;
+const PASSWORD = process.env.MAPD_PASSWORD;
 
 const to=(promise)=>promise.then(data => [null, data]).catch(err => [err]);
 

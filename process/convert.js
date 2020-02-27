@@ -16,13 +16,14 @@ const path = require('path');
 const async = require('async');
 
 const FOLDER = {
-  csv:path.join(__dirname, 'data','csv'),
-  hex:path.join(__dirname, 'data','hex'),
-  ship:path.join(__dirname, 'data','ship'),
-  convert:path.join(__dirname, 'data','csv2')
+  csv:path.join('data','csv'),
+  hex:path.join('data','hex'),
+  ship:path.join('data','ship'),
+  convert:path.join('data','csv'),
+  geojson:path.join('data','geojson')
 };
 
-function Convert(options,callback){
+function Convert(options){
   const self   = this;
   this.pointer = function(){return self;};
 
@@ -47,15 +48,14 @@ function Convert(options,callback){
     readship:0,
     readhex:0,
     time:{},
+    console:0,
     steps:{readmeitregion:0,readhex:1,readship:2,readping:3},
   };
   
   this.irow=0;
   this.iping=0;
   this.ipoint=0;
-  this.construct(function(){
-    callback(self.meta);
-  });
+  
 }
 Convert.prototype = {
   options:{
@@ -87,8 +87,10 @@ Convert.prototype = {
   get shipinput(){return this.options.shipinput},
   get geoinput(){return this.options.geoinput},
   get testing(){return this.options.testing},
-  print:function(){
-    this.printfunc(false,this.meta);
+  print:function(console){
+    const {meta,printfunc}=this;
+    if(console)meta.console=console;
+    printfunc(meta);
   },
   construct:function(callback){
     const self=this;
@@ -122,14 +124,22 @@ Convert.prototype = {
     
     const funcGeo = function(input,callback){
       const _id = self[input.id] = new MEITREGION(self.pointer);
-      const inputPath = path.resolve(self.folder.hex,input.file);
+      const inputPath = path.resolve(self.folder.geojson,input.file);
       _id.read(inputPath,function(e,message){
-        if(e){self.meta.errors.push(message);self.print();return;}
+        if(e){
+          self.meta.errors.push(message);
+          self.print();
+          return;
+        }
         callback();
       });
     }
     async.eachSeries(this.geoinput, funcGeo, function(e,message){
-      if(e){self.meta.errors.push(message);self.print();return;}
+      if(e){
+        self.meta.errors.push(message);
+        self.print();
+        return;
+      }
       maincallback();
     });
       
@@ -138,11 +148,15 @@ Convert.prototype = {
     const self=this;
     const ship = this.SHIP = new SHIP(this.pointer);
     const funcShip =function(input,callback){
-//        console.log(path.resolve(self.folder.ship,input.file))
+
       ship.readCSV(path.resolve(self.folder.ship,input.file),function(e,message){if(e)throw Error(message);callback();});
     };
     async.eachSeries(this.shipinput, funcShip, function(e,message){
-      if(e){self.meta.errors.push(message);self.print();return;}
+      if(e){
+        self.meta.errors.push(message);
+        self.print();
+        return;
+      }
       maincallback();
     });
     
@@ -202,8 +216,10 @@ Convert.prototype = {
 
         }
         count++;tcount++;
-        
-        self.parseCSV(row.data,function(obj){outstream.write(obj);});
+        self.parseCSV(row.data,function(obj){
+          outstream.write(obj);
+          
+        });
         // self.parseCSVPoints(row.data[0],function(obj){
         //   outstream.write(`{"type":"Feature","geometry":{"type":"Point","coordinates":[{0},{1}]},"properties":{}},`.format(obj.lng,obj.lat));
         // });
@@ -232,13 +248,16 @@ Convert.prototype = {
     this.irow++;
     const ships = this.SHIP.ships;
     for(let engine in ENGINES){
+      
+      
       const ping = {};
       let allzeros = true;
       for(let i=0,n=EMISSIONS.length;i<n;i++){
         const emission = EMISSIONS[i];
-        const prop = engine + "_" + emission;
+        const prop = (engine==='voc' && emission ==='voc')?'voc':engine + "_" + emission;
         const pvalue = parseFloat(obj[prop]);
         const value = pvalue ? pvalue : 0;
+        
         if(value>0){allzeros=false;}
         ping[emission]=value;
       }
@@ -307,6 +326,7 @@ Convert.prototype = {
         ping.prov    = this.prov[this.points[point_id]];
         ping.hex_16  = this.hex_16[this.points[point_id]];
         ping.hex_4   = this.hex_4[this.points[point_id]];
+        
         if(!(this.testing)){ping.hex_1   = this.hex_1[this.points[point_id]];}
         
         for(let i=0,n=YEARS.length;i<n;i++){
@@ -324,7 +344,7 @@ Convert.prototype = {
 
         const data=FIELDS.map(f=>ping[f]);
         this.iping++;
-        // console.log(data)
+        
         callback(data.join(",") + "\n");
       }
     }

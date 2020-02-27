@@ -43,9 +43,9 @@ function Ship(parent,id){
 Ship.prototype={
     get parent(){if(!(this._parent))throw Error("Parent is undefined");return this._parent();},
     parseCSV:function(obj,con){
-//    console.log(obj)
+    
     const ship_id = obj.ship_id;
-    const year    = obj.forecast_year;
+    const year    = obj.forecast_year || '2020';
     const region  = obj.meit_region;
     const _class  = obj.ship_class;
     const type    = obj.ship_type;
@@ -70,10 +70,12 @@ Ship.prototype={
         const code = ENGINES[engine];
         if(REGIONS.includes(parseFloat(region))){
           // EAST
+          // if(!this.ships[ship_id] || !this.ships[ship_id].forecast[year] || !this.ships[ship_id].forecast[year][code])console.log(ship_id,year,code,obj)
           this.ships[ship_id].forecast[year][code][region][emission]=parseFloat(obj[propertyName]) || 1.0;
         } else {
           // PACIFIC
           REGIONS.forEach(region=>{
+            // if(!this.ships[ship_id].forecast[year][code])console.log(ship_id,year,code)
             this.ships[ship_id].forecast[year][code][region][emission]=parseFloat(obj[propertyName]) || 1.0;
           },this);
         }
@@ -99,13 +101,11 @@ Ship.prototype={
           console.log(count);
           tcount=0;
         }
-
         tcount++;count++;
-
   	    self.parseCSV(row.data);
-
     	},    	
     	error:function(e){
+    	  console.log(e)
     	  self.parent.meta.time.readship=process.hrtime(hrstart)[0];
     	  self.parent.meta.action=null;
     	  callback(true,e);
