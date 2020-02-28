@@ -110,6 +110,11 @@ sudo systemctl restart mapd_web_server
 
 # Copy template
 # 
+sudo cp nginx/nginx.conf /etc/nginx/nginx.conf
+sudo cp nginx/ec-meit.conf /etc/nginx/sites-available/ec-meit.conf
+sudo cp nginx/general.conf /etc/nginx/nginxconfig.io/general.conf
+sudo cp nginx/security.conf /etc/nginx/nginxconfig.io/security.conf
+sudo cp nginx/proxy.conf /etc/nginx/nginxconfig.io/proxy.conf
 
 
 # ------------------------------------------------------------------------------
