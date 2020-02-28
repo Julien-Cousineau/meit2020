@@ -3,7 +3,10 @@ const path = require('path')
 const mbtiles = require('@mapbox/mbtiles');
 const express = require('express');
 
-const MBTILESFOLDER =  path.join(__dirname, 'data/mbtiles');
+var router = express.Router();
+
+
+const MBTILESFOLDER =  path.join('data/mbtiles');
 
 const tiles ={
   hex16:  'newhex16.mbtiles' ,
@@ -31,7 +34,6 @@ const fixTileJSONCenter = function(tileJSON) {
 };
 
 
-const MBTiles = (app)=>{
 
   for(let id in tiles){
     let mbtilesFile = path.resolve(MBTILESFOLDER,tiles[id]);
@@ -61,8 +63,10 @@ const MBTiles = (app)=>{
   
   
     let tilePattern = '/' + id + '/:z(\\d+)/:x(\\d+)/:y(\\d+).:format([\\w.]+)';
-    let route = express().disable('x-powered-by');
-    route.get(tilePattern, function(req, res, next) {
+     
+    // let route = express().disable('x-powered-by');
+    router.get(tilePattern, function(req, res, next) {
+      
       let z = req.params.z | 0,
           x = req.params.x | 0,
           y = req.params.y | 0;
@@ -95,10 +99,11 @@ const MBTiles = (app)=>{
         }
       });
     });
-    app.use('/tiles/',route)
+   
+    // app.use('/tiles/',route)
   }
-}
 
 
 
-module.exports = MBTiles;
+
+module.exports = router;

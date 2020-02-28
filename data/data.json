@@ -6,6 +6,7 @@
     {"azure":"meitregionsmbtiles","local":"mbtiles/meitregions.mbtiles"},
     {"azure":"cmeitregionsmbtiles","local":"mbtiles/cmeitregions.mbtiles"},
     {"azure":"provincesmbtiles","local":"mbtiles/provinces.mbtiles"},
+    {"azure":"cprovincesmbtiles","local":"mbtiles/cprovinces.mbtiles"},
     {"azure":"terminalsmbtiles","local":"mbtiles/terminals.mbtiles"}
     ],
     "ship":[

@@ -57,8 +57,8 @@ echo "
 ALTER USER mapd (password = '$MAPD_PASSWORD');
 CREATE USER eccc (password = '$ECCC_PASSWORD', is_super = 'false');
 CREATE DATABASE meit (owner = 'eccc');
-CREATE USER public (password = 'password', is_super = 'false',default_db='meit);
-GRANT ACCESS, SELECT ON DATABASE meit TO public;
+CREATE USER publicuser (password = 'password', is_super = 'false');
+GRANT ACCESS, SELECT ON DATABASE meit TO publicuser;
 " | bin/mapdql mapd -u mapd -p HyperInteractive
 
 # ------------------------------------------------------------------------------
@@ -101,6 +101,12 @@ sudo systemctl enable nginx
 sudo firewall-cmd --permanent --zone=public --add-service=http 
 sudo firewall-cmd --permanent --zone=public --add-service=https
 sudo firewall-cmd --reload
+
+# 
+cd $MEIT_PATH
+sudo cp mapd.conf $MAPD_STORAGE/mapd.conf
+sudo systemctl restart mapd_server
+sudo systemctl restart mapd_web_server
 
 # Copy template
 # 
