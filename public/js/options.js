@@ -9,8 +9,8 @@ const options ={
     },
   IP :getHostName(window.location.href),
   // URL : 'http://' + getHostName(window.location.href) + '/',
-  // URL : 'https://' + getHostName(window.location.href) + '/',
-  URL : 'http://' + getHostName(window.location.href) + ':8080/',
+   URL : 'https://' + getHostName(window.location.href) + '/',
+  //URL : 'http://' + getHostName(window.location.href) + ':8080/',
   // IP : '52.228.71.184',
   // URL : 'http://52.228.71.184:8080/',  
   keywords:{

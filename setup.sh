@@ -102,29 +102,31 @@ sudo firewall-cmd --permanent --zone=public --add-service=http
 sudo firewall-cmd --permanent --zone=public --add-service=https
 sudo firewall-cmd --reload
 
+
+# Copy files
+# 
+cd $MEIT_PATH
+sudo mkdir /etc/nginx/sites-available
+sudo mkdir /etc/nginx/nginxconfig.io
+sudo mkdir /etc/nginx/sites-enabled
+
+# !!!Important!!!!!
+#CHECK SSL certificate paths in ec-meit.conf and mapd.conf
+
+sudo setsebool httpd_can_network_connect on -P # Allow proxying
+sudo cp nginx/nginx.conf /etc/nginx/nginx.conf
+sudo cp nginx/ec-meit.conf /etc/nginx/sites-enabled/ec-meit.conf
+sudo cp nginx/general.conf /etc/nginx/nginxconfig.io/general.conf
+sudo cp nginx/security.conf /etc/nginx/nginxconfig.io/security.conf
+sudo cp nginx/proxy.conf /etc/nginx/nginxconfig.io/proxy.conf
+sudo openssl dhparam -out /etc/nginx/dhparam.pem 2048 
+sudo nginx -t && sudo systemctl reload nginx
+
 # 
 cd $MEIT_PATH
 sudo cp mapd.conf $MAPD_STORAGE/mapd.conf
 sudo systemctl restart mapd_server
 sudo systemctl restart mapd_web_server
-
-# Copy template
-# 
-sudo cp nginx/nginx.conf /etc/nginx/nginx.conf
-sudo cp nginx/ec-meit.conf /etc/nginx/sites-available/ec-meit.conf
-sudo cp nginx/general.conf /etc/nginx/nginxconfig.io/general.conf
-sudo cp nginx/security.conf /etc/nginx/nginxconfig.io/security.conf
-sudo cp nginx/proxy.conf /etc/nginx/nginxconfig.io/proxy.conf
-
-
-# ------------------------------------------------------------------------------
-# SSH KEY (development)
-# 
-# 
-# 
-
-
-
 
 # ------------------------------------------------------------------------------
 # Download vector tiles and latest csv2 for application (.mbtiles and data)
@@ -132,10 +134,6 @@ sudo cp nginx/proxy.conf /etc/nginx/nginxconfig.io/proxy.conf
 npm run azure-download
 npm run download-production-2015
 npm run data2db-2015
-
-# For development
-#npm run download-development-2015
-
 
 # Create nodeJS Meit service
 sudo cp meit.service /etc/systemd/system/meit.service

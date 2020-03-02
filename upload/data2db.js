@@ -21,8 +21,8 @@ const group = json[MEIT_YEAR]['production'];
 
 
 const f=async()=>{
-  // const [err0]=await to(db.dropTable(`t${MEIT_YEAR}`))
-  // const [err1]=await to(db.createTable(`t${MEIT_YEAR}`,path.resolve('data','schema','template.2019.sql')))
+  const [err0]=await to(db.dropTable(`t${MEIT_YEAR}`))
+  const [err1]=await to(db.createTable(`t${MEIT_YEAR}`,path.resolve('data','schema','template.2019.sql')))
   
   for(let i in group){
     const item=group[i];
