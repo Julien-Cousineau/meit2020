@@ -1,6 +1,7 @@
 # ------------------------------------------------------------------------------
 # Firewalld Installation
 sudo yum install -y firewalld
+sudo systemctl start firewalld
 sudo systemctl enable firewalld
 # sudo reboot ->Best practice
 sudo firewall-cmd --reload
