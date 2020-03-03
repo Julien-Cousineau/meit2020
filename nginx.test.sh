@@ -13,6 +13,7 @@ sudo cp nginx/letsencrypt.conf /etc/nginx/nginxconfig.io/letsencrypt.conf
 sudo cp nginx/general.conf /etc/nginx/nginxconfig.io/general.conf
 sudo cp nginx/security.conf /etc/nginx/nginxconfig.io/security.conf
 sudo cp nginx/proxy.conf /etc/nginx/nginxconfig.io/proxy.conf
+sudo openssl dhparam -out /etc/nginx/dhparam.pem 2048 
 
 sudo mkdir -p /var/www/letsencrypt/.well-known/acme-challenge
 sudo chown centos /var/www/letsencrypt
