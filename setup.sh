@@ -138,5 +138,5 @@ npm run data2db-2015
 
 # Create nodeJS Meit service
 sudo cp meit.service /etc/systemd/system/meit.service
-systemctl start meit.service
-systemctl enable meit.service
+sudo systemctl start meit.service
+sudo systemctl enable meit.service
