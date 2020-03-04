@@ -19,7 +19,12 @@ exports.MAPFIELDS = MAPFIELDS;
 const noxfactors = YEARS.map(year=>'nox'+year);
 const otherfactors = YEARS.map(year=>'other'+year);
 exports.FIELDS=[
-    // 'ship_id',
+    'ship_id',
+    'trip_id',
+    'ocountry',
+    'dcountry',
+    'otrip',
+    'dtrip',
     'class',
     'type',
     'ip',

@@ -55,6 +55,12 @@ const options ={
     a_enginecode:{'en':"Engine",'fr':"Moteur"},
     a_prov:{'en':"Province",'fr':"Province"},
     a_hexgrid:{'en':"Hex",'fr':"Hex"},
+    a_shipid:{'en':"Ship #",'fr':"# du navire"},
+    a_tripid:{'en':"Trip #",'fr':" # du voyage"},
+    a_otrip:{'en':"Trip Origin",'fr':"Origine du voyage"},
+    a_dtrip:{'en':"Trip Destination",'fr':"Destination du voyage"},
+    a_ocountry:{'en':"Country Origin",'fr':"Pays d'origine"},
+    a_dcountry:{'en':"Country Destination",'fr':"Pays de destination"},
     // datetime:{'en':"Date Time",'fr':"Temps"},
     // year:{'en':"Year",'fr':"Année"},
     // month:{'en':"Month",'fr':"Mois"},
@@ -202,6 +208,13 @@ const options ={
     emissionmode:{'en':"Emission Mode",'fr':"Mode d'émission"},
     enginecode:{'en':"Engine Code",'fr':"Code de moteur"},
     
+    shipid:{'en':"Ship #",'fr':"# du navire"},
+    tripid:{'en':"Trip #",'fr':"# du voyage"},
+    otrip:{'en':"Trip Origin",'fr':"Origine du voyage"},
+    dtrip:{'en':"Trip Destination",'fr':"Destination du voyage"},
+    ocountry:{'en':"Country Origin",'fr':"Pays d'origine"},
+    dcountry:{'en':"Country Destination",'fr':"Pays de destination"},
+    
     prov:{'en':"Prov/Terr",'fr':"Prov/Terr"},
     hexgrid:{'en':"Hex Grid",'fr':"Grille hexagonale"},
     // datetime:{'en':"Date Time",'fr':"Temps"},
@@ -293,7 +306,16 @@ charts:[
   {id:"panelclass",checked:true,active:false,keyword:"shipclass",acc:"a_shipclass",icon:"fa fa-ship",dim:'class',dctype:'rowChart',defaultscale:'',attributes:{}},
   {id:"paneltype",checked:true,active:false,keyword:"shiptype",acc:"a_shiptype",icon:"fa fa-ship",dim:'type',dctype:'rowChart',defaultscale:'',attributes:{}},
   {id:"panelmode",checked:true,active:false,keyword:"emissionmode",acc:"a_emissionmode",icon:"fa fa-modx",dim:'mode',dctype:'pieChart',defaultscale:'',attributes:{}},
-  {id:"panelengine",checked:true,active:false,keyword:"enginecode",acc:"a_enginecode",icon:"fa fa-cogs",dim:'engine',dctype:'pieChart',defaultscale:'',attributes:{}},,
+  {id:"panelengine",checked:true,active:false,keyword:"enginecode",acc:"a_enginecode",icon:"fa fa-cogs",dim:'engine',dctype:'pieChart',defaultscale:'',attributes:{}},
+  
+  {id:"panelshipid",checked:true,active:false,keyword:"shipid",acc:"a_shipid",icon:"fa fa-cogs",dim:'ship_id',dctype:'rowChart',defaultscale:'',attributes:{}},
+  {id:"paneltripid",checked:true,active:false,keyword:"tripid",acc:"a_tripid",icon:"fa fa-cogs",dim:'trip_id',dctype:'rowChart',defaultscale:'',attributes:{}},
+  
+  {id:"panelocountry",checked:true,active:false,keyword:"ocountry",acc:"a_ocountry",icon:"fa fa-cogs",dim:'ocountry',dctype:'rowChart',defaultscale:'',attributes:{}},
+  {id:"paneldcountry",checked:true,active:false,keyword:"dcountry",acc:"a_dcountry",icon:"fa fa-cogs",dim:'dcountry',dctype:'rowChart',defaultscale:'',attributes:{}},
+  {id:"panelotrip",checked:true,active:false,keyword:"otrip",acc:"a_otrip",icon:"fa fa-cogs",dim:'otrip',dctype:'rowChart',defaultscale:'',attributes:{}},
+  {id:"paneldtrip",checked:true,active:false,keyword:"dtrip",acc:"a_dtrip",icon:"fa fa-cogs",dim:'dtrip',dctype:'rowChart',defaultscale:'',attributes:{}},
+  
   {id:"paneltrend",checked:true,active:false,keyword:"trend",acc:"a_trend",icon:"fa fa-cogs",dim:'mapmeit',dctype:'barChart',defaultscale:'',attributes:{
       // binParams:{numBins: 24,binBounds: [0,23]},
       // x:d3.scale.ordinal().domain(d3.range(0,24)),

@@ -33,8 +33,8 @@ const f=async()=>{
     const basename = path.basename(item.local, '.zip');
     
     const inputZip = path.resolve('data',item.local);
-    const output = path.resolve('data','csv',basename +".2.csv");
-    const outputZip = path.resolve('data','csv',basename +".2.zip");
+    const output = path.resolve('data','csv',basename +".2020.csv");
+    const outputZip = path.resolve('data','csv',basename +".2020.zip");
     // if (fs.existsSync(outputZip))continue;
     
     const zipFile = await yauzl.open( inputZip )
@@ -71,7 +71,7 @@ const f=async()=>{
       const bar = new cliProgress.SingleBar({format:  '{bar}' + '| {percentage}% || {value}/{total} Chunks || '+item.local}, cliProgress.Presets.shades_classic);
       bar.start(300, 0);
       const options={
-          testing:true,
+          testing:false,
           csvinput:[input],
           csvoutput:[output],
           printfunc:()=>{}
@@ -88,10 +88,13 @@ const f=async()=>{
     if (!fs.existsSync(outputZip)){
       const stats = fs.statSync(output);
       const fileSize = stats.size;
+      console.log(output,path.basename(output))
       const bar = new cliProgress.SingleBar({format:  '{bar}' + '| {percentage}% || {value}/{total} Chunks || '+outputZip}, cliProgress.Presets.shades_classic);
       bar.start(fileSize, 0);
       const zipfile = new yazl.ZipFile();
-      zipfile.addFile(output, path.basename(output));
+      
+      const stream = fs.createReadStream(output);
+      zipfile.addReadStream(stream,path.basename(output));
       
       let _size = 0;
       
@@ -99,46 +102,45 @@ const f=async()=>{
         _size  +=  buffer.length*4;
         bar.update(_size);
       })
-      const e = await(new Promise((resolve,reject)=>{
+      const [e,t] = await to((new Promise((resolve,reject)=>{
         zipfile.outputStream.pipe(fs.createWriteStream(outputZip))
         .on("close",resolve)
-        .on("error",reject);
-        zipfile.end({},resolve);
-        }))
+        .on("error",reject)
+        stream.on("end",resolve);
+        })))
       bar.update(fileSize);
       bar.stop();
     }
     
     
-    
-    // Check Azure
-    const a = await(new Promise((resolve,reject)=>{
-      blobSvc.listBlobsSegmented('ecmeit', null, function(error, result, response){
-        if(error)return reject(error);
-        const entries = result.entries;
-        resolve(entries.some(e=>e.name==path.basename(outputZip)))
-      });
-    }));
-    if(a==false){
-      console.log(a)
-      const stats = fs.statSync(outputZip);
-      const fileSize = stats.size;
-      const bar = new cliProgress.SingleBar({format:  '{bar}' + '| {percentage}% || {value}/{total} Chunks || '+path.basename(outputZip)}, cliProgress.Presets.shades_classic);
-      const b=await (new Promise((resolve,reject)=>{
-        let _size=0;
-        bar.start(fileSize, 0);
-        const stream = fs.createReadStream(outputZip);
-        stream.on("data",(buffer)=>{
-          _size+=buffer.length;
-          bar.update(_size);
-        });
-        stream.on("close",resolve);
-        stream.on("error",reject);
-        stream.pipe(blobSvc.createWriteStreamToBlockBlob('ecmeit', path.basename(outputZip)));  
-      }))
-      bar.update(fileSize);
-      bar.stop();
-    }
+
+    // const a = await(new Promise((resolve,reject)=>{
+    //   blobSvc.listBlobsSegmented('ecmeit', null, function(error, result, response){
+    //     if(error)return reject(error);
+    //     const entries = result.entries;
+    //     resolve(entries.some(e=>e.name==path.basename(outputZip)))
+    //   });
+    // }));
+    // if(a==false){
+    //   console.log(a)
+    //   const stats = fs.statSync(outputZip);
+    //   const fileSize = stats.size;
+    //   const bar = new cliProgress.SingleBar({format:  '{bar}' + '| {percentage}% || {value}/{total} Chunks || '+path.basename(outputZip)}, cliProgress.Presets.shades_classic);
+    //   const b=await (new Promise((resolve,reject)=>{
+    //     let _size=0;
+    //     bar.start(fileSize, 0);
+    //     const stream = fs.createReadStream(outputZip);
+    //     stream.on("data",(buffer)=>{
+    //       _size+=buffer.length;
+    //       bar.update(_size);
+    //     });
+    //     stream.on("close",resolve);
+    //     stream.on("error",reject);
+    //     stream.pipe(blobSvc.createWriteStreamToBlockBlob('ecmeit', path.basename(outputZip)));  
+    //   }))
+    //   bar.update(fileSize);
+    //   bar.stop();
+    // }
     
   }
   process.exit()

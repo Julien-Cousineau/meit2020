@@ -1,0 +1,20 @@
+[Unit]
+Description=MEIT Server
+
+[Service]
+ExecStart=/usr/bin/node /home/centos/meit/server/server.js
+# Required on some systems
+WorkingDirectory=/home/centos/meit/
+Restart=always
+# Restart service after 10 seconds if node service crashes
+RestartSec=10
+
+# Output to syslog
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=meit-server
+
+Environment=NODE_ENV=production PORT=8080
+
+[Install]
+WantedBy=multi-user.target

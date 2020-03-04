@@ -126,6 +126,7 @@ MapD.prototype = {
                       "{0}*{1}".format(this.emission,fuelFactor):
                       "{0}*{1}*{2}*0.015625".format(this.emission,fuelFactor,factor);
       }
+      console.log(exp)
       return {expression: exp,agg_mode:"sum",name: 'year'+year}
     },this)
   },

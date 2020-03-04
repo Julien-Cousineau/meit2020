@@ -1,9 +1,13 @@
 {
-   "2015":{
+   "2015a":{
     "development":[
-        {"azure":"arctic_voc_2019-03-18b.zip","local":"csv/arctic_voc_2019-03-18b.zip"}
+         {"azure":"arctic_emissions_2019_04_25","local":"csv/arctic_emissions_2019_04_25.zip"}
 
+        ],
+    "production":[
+        {"azure":"arctic_emissions_2019_04_25.2020.zip","local":"csv/arctic_emissions_2019_04_25.2020.zip"}
         ]
+    
     }
    
 }

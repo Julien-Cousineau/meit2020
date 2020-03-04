@@ -11,7 +11,7 @@
     ],
     "ship":[
         {"azure":"east_arctic_greatlakes_forecast_factors_02062018.csv","local":"ship/east_arctic_greatlakes_forecast_factors_02062018.csv"},
-        {"azure":"pacific_growth_factors_02062018.csv","local":"ship/east_arctic_greatlakes_forecast_factors_02062018.csv"}
+        {"azure":"pacific_growth_factors_02062018.csv","local":"ship/pacific_growth_factors_02062018.csv"}
     ],
     "hex":[
         {"azure":"newhex16","local":"hex/newhex16.hex"},

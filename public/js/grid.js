@@ -1,3 +1,4 @@
+$.fn.selectpicker.Constructor.BootstrapVersion = '4';
 
 
 function Grid(parent){
@@ -12,6 +13,7 @@ Grid.prototype = {
 
     
     $('.gridContainer').empty().append(this.renderRow(this.parent.charts));
+    
     this.panelFunc();
     
     
@@ -32,6 +34,11 @@ Grid.prototype = {
       const $inp = $target.find( 'input' );
       $inp.prop("checked", !$inp.prop("checked"))
     });
+    
+    // $('#multipleSelect2').on('click', function () {
+    //   $('#multipleSelect2').find('option:selected').prop('disabled', true);
+    //   $('#multipleSelect2').selectpicker('refresh');
+    // });
   },
   renderPanelContent:function(id){
     return `<div class="forchart {0}"></div>`.format("_" + id);
@@ -66,6 +73,13 @@ Grid.prototype = {
           <div class="x_panel tile fixed_height_320">
             <div class="x_title">
               <h2 keyword="{1}" keywordType="text">{1}</h2>
+             
+                <select class="selectpicker" data-live-search="true" multiple data-selected-text-format="count">
+              
+                  
+                </select>
+         
+
               <ul class="nav navbar-right panel_toolbox">
                 <li class="resetbtnli" style="visibility: hidden"><a class="resetbtn"><i class="fa fa-filter"></i><i class="fa fa-times xicon"></i></a></li>
                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -98,6 +112,7 @@ Grid.prototype = {
     const self=this;
     let html = panels.map(function(panel){return `{0}`.format(self.renderPanelTitle(panel));})
     html = html.join("");
+    
     return `<div class="row">{0}</div>`.format(html);
   },
   

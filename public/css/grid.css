@@ -209,3 +209,13 @@ h2 {
 .dropdown-menu a, .voiceBtn {
     cursor: pointer;
 }
+
+.dropdown.bootstrap-select {
+    width: 100px !important;
+}
+
+.bootstrap-select .btn {
+    padding: .175rem .15rem;
+    font-size: 0.7rem;
+    
+}

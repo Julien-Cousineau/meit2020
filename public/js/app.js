@@ -31,7 +31,7 @@ App.prototype ={
     emission: 'nox',
     mapLayer:'mapmeit',
     mapDLayer:'mapmeit',
-    table:'t2015',
+    table:'t2015a',
     tables:[],
     divider: 1000000,
     keyTags:'',

@@ -9,6 +9,7 @@ function Chart(parent,options,callback){
   this._parent = parent;
   this.options = extend(Object.create(this.options), options);
   // this.callback=callback;
+  this.uniques=[];
   this.createChart(function(){
     callback();
   });
@@ -19,6 +20,7 @@ Chart.prototype = {
     dim:'',
     dctype:'',
     colorScheme:["#22A7F0", "#3ad6cd", "#d4e666"],
+   
   },
   defaultChartAttributes:{
     pieChart:{cap:25,othersGrouper:false},
@@ -128,6 +130,12 @@ Chart.prototype = {
     
     filter = (typeof filter==='symbol')?null:filter;
     this.parent.createBadge({id:this.id,acc:this.options.acc,chart:chart,filter:filter});
+    
+    if(this.id==='panelshipid' || this.id==='paneltripid'){
+       const s = $('div[panelid="{0}"] .selectpicker'.format(this.id));
+        s.selectpicker('val', chart.filters());
+    }
+    
       // this.parent.pillcontainer.push({panel:this.id,filter:filter.toString(),active:true})
     // }
     // chart.filters().forEach(_filter=>{
@@ -195,11 +203,37 @@ Chart.prototype = {
   //     callback();
   //   });
   // },
+  getUniques:async function(){
+    const self=this;
+    if(this.id==='panelshipid' || this.id==='paneltripid'){
+      const array= this.group.reduce(this.reduceFunc).all();
+      
+      const s = $('div[panelid="{0}"] .selectpicker'.format(this.id));
+      const keys= this.uniques = array.map(a=>a.key0);
+      keys.forEach(a=>{
+        s.append('<option>{0}</option>'.format(a))  
+      })
+      s.selectpicker({"noneSelectedText":"0 item",countSelectedText:function(a){return "{0} items".format(a)}});
+     s.on('changed.bs.select', function (e, clickedIndex, isSelected, previousValue) {
+       if(clickedIndex!==null){
+        const v= self.uniques[clickedIndex];
+         self.dc.filter(v)
+         self.parent.draw();
+         
+       }
+       
+       
+     
+          });
+    }
+    
+  },
   createChart:function(callback){
     const self=this;
     if(this.options.getMinMax){
       this.getMinMax(function(){self._createChart();callback();})}
-    else{self._createChart();callback();}
+    else{self._createChart();this.getUniques();callback();}
+    
   },
   _createChart:function(){
     const self = this;

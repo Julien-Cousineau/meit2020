@@ -4,14 +4,16 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "process": "MEIT_YEAR=2015 node --max-old-space-size=3800 process/index.js",
-    "process-test": "MEIT_CSVT=csv.test.json MEIT_YEAR=2015 node --max-old-space-size=4000 process/index.js",
+    "process": "MEIT_YEAR=2015 node --max-old-space-size=8000 process/index.js",
+    "process-test": "MEIT_CSVT=csv.test.json MEIT_YEAR=2015a node --max-old-space-size=8000 process/index.js",
+    "api-test": "python api/example.py",
     "azure-list": "node upload/azure-list.js",
     "azure-download": "node upload/azure-download.js",
     "download-development-2015-test": "MEIT_CSVT=csv.test.json MEIT_YEAR=2015 NODE_ENV=development node upload/azure-download-csv.js",
     "download-development-2015": "MEIT_YEAR=2015 NODE_ENV=development node upload/azure-download-csv.js",
     "download-production-2015": "MEIT_YEAR=2015 NODE_ENV=production node upload/azure-download-csv.js",
     "data2db-2015": "MEIT_YEAR=2015 node --max-old-space-size=3800 upload/data2db.js",
+    "data2db-2015a": "MEIT_CSVT=csv.test.json MEIT_YEAR=2015a node --max-old-space-size=3800 upload/data2db.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

@@ -311,7 +311,15 @@ Convert.prototype = {
         // ping.class = (ships[ship_id])?ships[ship_id].Class:obj.ship_class;
         // ping.type = (ships[ship_id])?ships[ship_id].type:obj.ship_type;
         ping.class=obj.ship_class;
-        ping.type=obj.ship_type;        
+        ping.type=obj.ship_type;
+        
+        ping.ship_id=obj.ship_id;
+        ping.trip_id=obj.trip_id;
+        
+        ping.ocountry=obj.origin_country;
+        ping.dcountry=obj.dest_country;
+        ping.otrip=obj.trip_start_id;
+        ping.dtrip=obj.trip_end_id;
         
         ping.ip      = ip;
         // ping.point_id= point_id;

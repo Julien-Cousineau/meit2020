@@ -132,7 +132,7 @@ MapContainer.prototype = {
   },
   setLanguage:function(language){
     
-    console.log("setLanguage",this,this.mapLanguage)
+    // console.log("setLanguage",this,this.mapLanguage)
     this.map.setStyle(this.mapLanguage.setLanguage(this.map.getStyle(),language));
   },
   readTerminals: function(callback){

@@ -26,3 +26,14 @@ sudo sed -i -r 's/#?;#//g' /etc/nginx/sites-enabled/ec-meit.conf
 sudo nginx -t && sudo systemctl reload nginx
 echo -e '#!nginx -t && systemctl reload nginx' | sudo tee /etc/letsencrypt/renewal-hooks/post/nginx-reload.sh
 sudo chmod a+x /etc/letsencrypt/renewal-hooks/post/nginx-reload.sh
+sudo cp meit.test.service /etc/systemd/system/meit.service
+sudo systemctl start meit.service
+sudo systemctl enable meit.service
+
+curl -O https://repo.anaconda.com/archive/Anaconda3-5.3.1-Linux-x86_64.sh
+sha256sum Anaconda3-5.3.1-Linux-x86_64.sh
+bash Anaconda3-5.3.1-Linux-x86_64.sh
+source ~/.bashrc
+conda create -n myenv python=3.6
+conda activate myenv 
+conda install -c conda-forge pymapd=0.10
