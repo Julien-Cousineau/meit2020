@@ -1,22 +1,23 @@
 {
    "2015":{
     "development":[
-        {"azure":"arctic_emissions_2019_04_25","local":"csv/arctic_emissions_2019_04_25.zip"},
+        {"azure":"arctic_emissions_2019_04_25","local":"csv/arctic_emissions_2019_04_25.zip","overwrite":false},
         {"azure":"pacific_emissions_2019_04_25","local":"csv/pacific_emissions_2019_04_25.zip"},
         {"azure":"east_emissions_2019-04-25","local":"csv/east_emissions_2019-04-25.zip"},
-        {"azure":"arctic_voc_2019-03-18b.zip","local":"csv/arctic_voc_2019-03-18b.zip"},
-        {"azure":"east_voc_2019-03-18b.zip","local":"csv/east_voc_2019-03-18b.zip"},
-        {"azure":"pacific_voc_2019-03-18b.zip","local":"csv/pacific_voc_2019-03-18b.zip"}
+        {"azure":"arctic_voc_2020-03-06.zip","local":"csv/arctic_voc_2020-03-06.zip"},
+        {"azure":"east_voc_2020-03-06.zip","local":"csv/east_voc_2020-03-06.zip"},
+        {"azure":"pacific_voc_2020-03-06.zip","local":"csv/pacific_voc_2020-03-06.zip"}
         ],
     "production":[
-        {"azure":"arctic_emissions_2019_04_25.2.zip","local":"csv/arctic_emissions_2019_04_25.2.zip"},
-        {"azure":"pacific_emissions_2019_04_25.2.zip","local":"csv/pacific_emissions_2019_04_25.2.zip"},
-        {"azure":"east_emissions_2019-04-25.2.zip","local":"csv/east_emissions_2019-04-25.2.zip"},
-        {"azure":"arctic_voc_2019-03-18b.2.zip","local":"csv/arctic_voc_2019-03-18.2.zip"},
-        {"azure":"east_voc_2019-03-18b.2.zip","local":"csv/east_voc_2019-03-18.2.zip"},
-        {"azure":"pacific_voc_2019-03-18b.2.zip","local":"csv/pacific_voc_2019-03-18.2.zip"}        
+        {"azure":"arctic_emissions_2019_04_25.2020.zip","local":"csv/arctic_emissions_2019_04_25.2020.zip"},
+        {"azure":"pacific_emissions_2019_04_25.2020.zip","local":"csv/pacific_emissions_2019_04_25.2020.zip"},
+        {"azure":"east_emissions_2019-04-25.2020.zip","local":"csv/east_emissions_2019-04-25.2020.zip"},
+        {"azure":"arctic_voc_2020-03-06.2020.zip","local":"csv/arctic_voc_2020-03-06.2020.zip"},
+        {"azure":"east_voc_2020-03-06.2020.zip","local":"csv/east_voc_2020-03-06.2020.zip"},
+        {"azure":"pacific_voc_2020-03-06.2020.zip","local":"csv/pacific_voc_2020-03-06.2020.zip"}     
         ]
     }
+       
     
    
 }

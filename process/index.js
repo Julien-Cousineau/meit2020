@@ -98,49 +98,51 @@ const f=async()=>{
       
       let _size = 0;
       
-      zipfile.outputStream.on("data",(buffer)=>{
-        _size  +=  buffer.length*4;
-        bar.update(_size);
-      })
+      // zipfile.outputStream.on("data",(buffer)=>{
+      //   _size  +=  buffer.length*4;
+      //   bar.update(_size);
+      // })
       const [e,t] = await to((new Promise((resolve,reject)=>{
         zipfile.outputStream.pipe(fs.createWriteStream(outputZip))
         .on("close",resolve)
         .on("error",reject)
         stream.on("end",resolve);
         })))
+      if(e)console.log(e)
       bar.update(fileSize);
       bar.stop();
     }
     
     
 
-    // const a = await(new Promise((resolve,reject)=>{
-    //   blobSvc.listBlobsSegmented('ecmeit', null, function(error, result, response){
-    //     if(error)return reject(error);
-    //     const entries = result.entries;
-    //     resolve(entries.some(e=>e.name==path.basename(outputZip)))
-    //   });
-    // }));
-    // if(a==false){
-    //   console.log(a)
-    //   const stats = fs.statSync(outputZip);
-    //   const fileSize = stats.size;
-    //   const bar = new cliProgress.SingleBar({format:  '{bar}' + '| {percentage}% || {value}/{total} Chunks || '+path.basename(outputZip)}, cliProgress.Presets.shades_classic);
-    //   const b=await (new Promise((resolve,reject)=>{
-    //     let _size=0;
-    //     bar.start(fileSize, 0);
-    //     const stream = fs.createReadStream(outputZip);
-    //     stream.on("data",(buffer)=>{
-    //       _size+=buffer.length;
-    //       bar.update(_size);
-    //     });
-    //     stream.on("close",resolve);
-    //     stream.on("error",reject);
-    //     stream.pipe(blobSvc.createWriteStreamToBlockBlob('ecmeit', path.basename(outputZip)));  
-    //   }))
-    //   bar.update(fileSize);
-    //   bar.stop();
-    // }
+    const a = await(new Promise((resolve,reject)=>{
+      blobSvc.listBlobsSegmented('ecmeit', null, function(error, result, response){
+        if(error)return reject(error);
+        const entries = result.entries;
+        resolve(entries.some(e=>e.name==path.basename(outputZip)))
+      });
+    }));
+    if(a==false || item.overwrite){
+      console.log( path.basename(outputZip))
+      const stats = fs.statSync(outputZip);
+      const fileSize = stats.size;
+      const bar = new cliProgress.SingleBar({format:  '{bar}' + '| {percentage}% || {value}/{total} Chunks || '+path.basename(outputZip)}, cliProgress.Presets.shades_classic);
+      const b=await to((new Promise((resolve,reject)=>{
+        let _size=0;
+        bar.start(fileSize, 0);
+        const stream = fs.createReadStream(outputZip);
+        // stream.on("data",(buffer)=>{
+        //   _size+=buffer.length;
+        //   bar.update(_size);
+        // });
+        stream.on("end",resolve);
+        stream.on("error",reject);
+        stream.pipe(blobSvc.createWriteStreamToBlockBlob('ecmeit', path.basename(outputZip)));  
+      })))
+      console.log(b)
+      bar.update(fileSize);
+      bar.stop();
+    }
     
   }
   process.exit()

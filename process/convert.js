@@ -315,11 +315,15 @@ Convert.prototype = {
         
         ping.ship_id=obj.ship_id;
         ping.trip_id=obj.trip_id;
+        if(typeof obj.origin_country==="undefined")obj.origin_country="";
+        if(typeof obj.dest_country==="undefined")obj.dest_country="";
+        if(typeof obj.trip_start_id==="undefined")obj.trip_start_id="";
+        if(typeof obj.trip_end_id==="undefined")obj.trip_end_id="";
         
-        ping.ocountry=obj.origin_country;
-        ping.dcountry=obj.dest_country;
-        ping.otrip=obj.trip_start_id;
-        ping.dtrip=obj.trip_end_id;
+        ping.ocountry=obj.origin_country.replace(",", " ");
+        ping.dcountry=obj.dest_country.replace(",", " ");
+        ping.otrip=obj.trip_start_id.replace(",", " ");
+        ping.dtrip=obj.trip_end_id.replace(",", " ");
         
         ping.ip      = ip;
         // ping.point_id= point_id;
