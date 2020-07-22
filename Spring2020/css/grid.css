@@ -1,0 +1,221 @@
+.gridContainerParent {
+    position: absolute;
+    top: 69px;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    overflow: hidden;
+}
+.gridContainer {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+    margin: 0;
+    display: block;
+    padding: 10px 20px 0;
+    z-index: 2;
+    overflow-y: scroll;
+    pointer-events: auto;
+}
+.x_title h2, table.tile_info td p {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.site_title, .x_title h2, table.tile_info td p {
+    text-overflow: ellipsis;
+}
+.xicon {
+    font-size: 8px;
+    left: 5px;
+    top: 15px;
+    position: absolute;
+
+    width: 100%;
+    text-align: center;
+}
+h2 {
+    font-size: 18px;
+    font-weight: 400;
+}
+.panel_toolbox>li>a {
+    padding: 5px;
+    color: #C5C7CB !important;
+    font-size: 14px;
+}
+.panel_toolbox>li>a:hover {
+    background: #F5F7FA;
+}
+.chart-container-child {
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 10px;
+    height: 100%;
+    width: 100%;
+}
+
+
+.nav>li>a:focus, .nav>li>a:hover {
+    background-color: transparent;
+}
+
+.nav>li>a:focus, .nav>li>a:hover {
+    text-decoration: none;
+    /*background-color: #eee;*/
+}
+
+.x_panel {
+    pointer-events: auto;
+    color: #73879C;
+    width: 100%;
+    padding: 10px 17px 0px 17px;
+    display: inline-block;
+    background: #fff;
+    border: 1px solid #E6E9ED;
+    -webkit-column-break-inside: avoid;
+    -moz-column-break-inside: avoid;
+    column-break-inside: avoid;
+    opacity: 1;
+    transition: all .2s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,.26);
+}
+.tooltip-inner {
+    max-width: 200px;
+    padding: 3px 8px;
+    color: #fff;
+    text-align: center;
+    background-color: #000;
+    border-radius: .25rem;
+}
+.x_panel, .x_title {
+    margin-bottom: 10px;
+}
+.degrees:after, .x_content, .x_panel {
+    position: relative;
+}
+.fixed_height_320 {
+    height: 320px;
+}
+.x_title {
+    border-bottom: 2px solid #E6E9ED;
+    padding: 1px 5px 6px;
+}
+.x_title h2 {
+    margin: 5px 0 6px;
+    float: left;
+    display: block;
+}
+@media (max-width: 1200px){
+    .x_title h2 {
+        /*width: 62%;*/
+        font-size: 17px;
+    }
+}
+
+@media (min-width: 768px) {
+    .navbar-right {
+        float: right!important;
+        margin-right: -15px;
+    }
+}
+.navbar-right {
+    margin-right: 0;
+}
+.panel_toolbox {
+    float: right;
+    min-width: 70px;
+}
+.panel_toolbox>li {
+    float: left;
+    cursor: pointer;
+}
+.nav.top_menu>li>a, .nav>li>a {
+    position: relative;
+    display: block;
+}
+.nav>li>a {
+    padding: 13px 15px 12px;
+}
+.panel_toolbox>li>a {
+    padding: 5px;
+    color: #C5C7CB;
+    font-size: 14px;
+}
+.degrees:after, .x_content, .x_panel {
+    position: relative;
+}
+.x_content, table.tile td ul li a, table.tile_info {
+    width: 100%;
+}
+.x_content {
+    /*padding: 0 5px 6px;*/
+    /*float: left;*/
+    /*clear: both;*/
+    /*margin-top: 5px;*/
+    height: 250px;
+}
+.dropdown-menu {
+    box-shadow: none;
+    display: none;
+    float: left;
+    font-size: 12px;
+    left: 0;
+    list-style: none;
+    padding: 0;
+    position: absolute;
+    text-shadow: none;
+    top: 100%;
+    z-index: 9998;
+    border: 1px solid #D9DEE4;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    min-width: 12rem;
+}
+.dropdown-menu>li>a {
+    color: #5A738E;
+}
+.dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover {
+    color: #262626;
+    text-decoration: none;
+    background-color: #f5f5f5;
+}
+.detail a, .expand, .jqstooltip, .paging_full_numbers a:hover, .site_title:focus, .site_title:hover, a, a:focus, a:hover {
+    text-decoration: none;
+}
+.dropdown-menu>li>a {
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: 400;
+    line-height: 1.42857143;
+    color: #333;
+    white-space: nowrap;
+}
+.dropdown-menu>li>a {
+    color: #5A738E;
+}
+
+
+.dropdown-menu>li>a {
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: 400;
+    line-height: 1.42857143;
+    color: #333;
+    white-space: nowrap;
+}
+
+.dropdown-menu a, .voiceBtn {
+    cursor: pointer;
+}
+
+.dropdown.bootstrap-select {
+    width: 100px !important;
+}
+
+.bootstrap-select .btn {
+    padding: .175rem .15rem;
+    font-size: 0.7rem;
+    
+}

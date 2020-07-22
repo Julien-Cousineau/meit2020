@@ -10,9 +10,7 @@ const to=(promise)=>promise.then(data => [null, data]).catch(err => [err]);
 
 const MEIT_YEAR = process.env.MEIT_YEAR;
 
-const csv = process.env.MEIT_CSVT || 'csv.json'
-
-const jsonPath = path.join('data',csv);
+const jsonPath = path.join('data','csv.json');
 
 let rawdata = fs.readFileSync(jsonPath);
 let json = JSON.parse(rawdata);

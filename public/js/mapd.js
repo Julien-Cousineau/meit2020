@@ -65,13 +65,19 @@ MapD.prototype = {
     .password(keys.password)
     .connect(function(error, con) {
        self.con=con;
-       console.log(table)
        crossfilter.crossfilter(con, table).then(function(crossFilter){return self.crossFilterSetup(crossFilter);})
     });
   },
+  // updateCrossFilter:function(){
+  //   const self=this;
+  //   const table=this.table;
+  //   crossfilter.crossfilter(this.con, table).then(function(crossFilter){self.crossFilter = crossFilter;self.parent.refresh()})
+  // },
   crossFilterSetup:function(crossFilter){
     // console.log(crossFilter)
     this.crossFilter = crossFilter;
+    console.log("Julien")
+    console.log(crossFilter)
     // if(this.first)this.createCharts();
     dc.chartRegistry.clear();
     this.createCharts();
@@ -133,9 +139,9 @@ MapD.prototype = {
   colorScheme:["#22A7F0", "#3ad6cd", "#d4e666"],
   createCharts:function(){
     const self=this;
-    const crossFilter = this.crossFilter;
+    // const crossFilter = this.crossFilter;
     // console.log(crossFilter)
-    let allColumns = crossFilter.getColumns();
+    // let allColumns = crossFilter.getColumns();
     const charts=this.parent.charts;
     
     let array=[];
@@ -205,6 +211,7 @@ MapD.prototype = {
   },
   createBadge:function(obj){
     const {id,acc,chart,filter,label}=obj;
+    
     const element = d3.select($('.pillcontainer')[0]);
     // const badge_id = '{0}_{1}'.format(id,filter.toString());
     
@@ -231,8 +238,18 @@ MapD.prototype = {
         .attr("keywordType", "text")
         .text(this.keywords[acc][this.language]);
         const t =span.append('i');
+        console.log("acc" + acc)
+        let _filter = filter; 
+        if(acc=="a_prov"){
+          _filter=referenceProv[this.language][filter]
+        } else {
+          if(this.language=='fr')_filter=this.keywords['vlabels'][filter]
+        }
+        
+        
+        
         if(label)t.text(':' + label);
-        if(!label)t.text(':' + filter.toString());
+        if(!label)t.text(':' + _filter);
         span.append('i').attr('class','fa fa-times');
     }
     
@@ -417,7 +434,7 @@ MapD.prototype = {
       const limit = 1000000;
       
       const filters = this.crossFilter.getFilterString();
-      // console.log(filters)
+      console.log("TAble",table)
       const filtersstr = (filters)?"{0} AND ".format(filters):"";
       const con = "(lng>{0} AND lat>{1} AND lng<{2} AND lat<{3}) AND ".format(bounds[0],bounds[1],bounds[2],bounds[3]);
       // querystring = "SELECT {0} as key0,SUM({1}) AS {1} FROM {2} WHERE {4}{5}{1} IS NOT NULL GROUP BY key0 ORDER BY {1} DESC LIMIT {3}"

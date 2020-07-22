@@ -58,7 +58,7 @@ App.prototype ={
                 <h6 class="logoTitle">EC - Marine Emission Inventory Tool</h6>
               </div>
               <div class="col-sm-6">
-                  <h6 class="logoTitle">EC - Outil d’inventaire des émissions des navires</h6>
+                  <h6 class="logoTitle">EC - Outil d’affichage d’inventaire des émissions des marines</h6>
               </div>
           	</div>
           	<div class="row" style="padding-top: 40px;">

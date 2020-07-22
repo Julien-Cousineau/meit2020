@@ -2,9 +2,9 @@
 Description=MEIT Server
 
 [Service]
-ExecStart=/usr/bin/node /home/centos/meit/server/server.js
+ExecStart=/home/ec2-user/.nvm/versions/node/v14.2.0/bin/node /home/ec2-user/meit2020/server/server.js
 # Required on some systems
-WorkingDirectory=/home/centos/meit/
+WorkingDirectory=/home/ec2-user/meit2020
 Restart=always
 # Restart service after 10 seconds if node service crashes
 RestartSec=10

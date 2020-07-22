@@ -74,10 +74,7 @@ Grid.prototype = {
             <div class="x_title">
               <h2 keyword="{1}" keywordType="text">{1}</h2>
              
-                <select class="selectpicker" data-live-search="true" multiple data-selected-text-format="count">
-              
-                  
-                </select>
+            
          
 
               <ul class="nav navbar-right panel_toolbox">

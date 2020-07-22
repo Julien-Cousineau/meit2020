@@ -1,10 +1,12 @@
 [Unit]
 Description=MEIT Server
+After=network.target
 
 [Service]
-ExecStart=//usr/bin/node /meit/server/server.js
-# Required on some systems
-WorkingDirectory=/meit
+Environment=NODE_VERSION=14.2.0
+ExecStart=/home/ec2-user/.nvm/nvm-exec node
+WorkingDirectory=/home/ec2-user/meit2020
+#User=ec2-user
 Restart=always
 # Restart service after 10 seconds if node service crashes
 RestartSec=10
@@ -14,7 +16,7 @@ StandardOutput=syslog
 StandardError=syslog
 SyslogIdentifier=meit-server
 
-Environment=NODE_ENV=production PORT=8080
+
 
 [Install]
 WantedBy=multi-user.target

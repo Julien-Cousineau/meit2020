@@ -104,6 +104,7 @@ Footer.prototype ={
             $inp = $target.find( 'input' );
       if(type==="gis" || type==="table")$('.dropdown-menu.{0} li input'.format(name)).prop("checked",false);
       if(type==="gis")self.parent.mapContainer.changeLayer(panelid);
+      console.log(panelid)
       if(type==="table")self.parent.table=panelid;
       
       $inp.prop("checked", !$inp.prop("checked"));
@@ -163,7 +164,7 @@ Footer.prototype ={
     const unitT = units.find(item=>item.divider===divider).keyword;
     const yearT = years.find(item=>item.id===year).keyword;
 
-    // const tablelis = this.htmlli(this.parent.publictables);
+    const tablelis = this.htmlli(this.parent.tables);
     const gislis = this.htmlli(this.parent.gis);
     const chartlis = this.htmlli(this.parent.charts);
     
@@ -186,7 +187,14 @@ Footer.prototype ={
                 </div>
                 <div class="col-sm-4">
                   <ul class="nav navbar-right panel_toolbox">
-                                 
+                    <li data-toggle="tooltip" data-placement="top" title="database" keyword="database" keywordType="title">
+                      <a class="dropdown-toggle  foorterbtn" id="dropdownMenuTable" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-database fa-2x" aria-hidden="true"></i></a>
+                      <div class="dropdown-menu  dropdown-menu-right menufortable" aria-labelledby="dropdownMenuTable" x-placement="bottom-start" >
+                        <ul class="list-group">
+                         {3}
+                        </ul>
+                      </div>
+                    </li>               
                     <li title="gis" keyword="gis" keywordType="title">
                       <a class="dropdown-toggle foorterbtn" id="dropdownMenuGIS" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="far fae-layers fa-2x" aria-hidden="true"></i></a>
                       <div class="dropdown-menu  dropdown-menu-right menuforgis" aria-labelledby="dropdownMenuGIS" x-placement="bottom-start" >
@@ -222,7 +230,7 @@ Footer.prototype ={
             `.format(this.dropdownMenu('emissions',emissions,"emission","emissions"),
                      this.dropdownMenu('units',units,"unit","unit"),
                      this.dropdownMenu('years',years,"year","forecastyear"),
-                     null,
+                     tablelis,
                      gislis,
                      chartlis
                      )

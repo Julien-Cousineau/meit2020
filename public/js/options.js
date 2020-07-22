@@ -14,6 +14,9 @@ const options ={
   // IP : '52.228.71.184',
   // URL : 'http://52.228.71.184:8080/',  
   keywords:{
+    logo:{'en':"/images/sig-eng.png",'fr':"/images/sig-fra.png"},
+    none:{'en':"None",'fr':"Aucun"},
+    exportname:{'en':"ec-meit.ca",'fr':"ec-meit.ca"},
     transparency:{'en':"Transparency",'fr':"Transparence"},
     username:{'en':"Username",'fr':"Nom d'utilisateur"},
     closee:{'en':"Close",'fr':"Fermer"},
@@ -49,10 +52,11 @@ const options ={
     a_ip:{'en':"IP",'fr':"PI"},
     a_shipct:{'en':"Class/Type",'fr':"Catégorie/Type"},
     a_shipclass:{'en':"Class",'fr':"Catégorie"},
-    a_meitregion:{'en':"MEIT",'fr':"MEIT"},
+    a_meitregion:{'en':"Region",'fr':"Région"},
+    
     a_shiptype:{'en':"Type",'fr':"Type"},
-    a_emissionmode:{'en':"Mode",'fr':"Code"},
-    a_enginecode:{'en':"Engine",'fr':"Moteur"},
+    a_emissionmode:{'en':"Mode",'fr':"Mode d'émission"},
+    a_enginecode:{'en':"Engine",'fr':"Code de moteur"},
     a_prov:{'en':"Province",'fr':"Province"},
     a_hexgrid:{'en':"Hex",'fr':"Hex"},
     a_shipid:{'en':"Ship #",'fr':"# du navire"},
@@ -250,7 +254,7 @@ const options ={
     pm25:{en:'PM25',fr:'PM25'}, 
     pm10:{en:'PM10',fr:'PM10'}, 
     pm:{en:'PM',fr:'TPM'}, 
-    bc:{en:'BC',fr:'CN'},
+    bc:{en:'BC',fr:'Carbone noir'},
     fuel:{en:'Fuel',fr:'Carburant'},
     fuel_cons:{en:'Fuel',fr:'Carburant'},
     co2e:{en:'CO2eq',fr:'eq. CO2'},
@@ -302,14 +306,14 @@ charts:[
                    }    
     
   },  
-  {id:"panelprov",checked:true,active:false,keyword:"prov",acc:"a_shipclass",icon:"fa fa-ship",dim:'prov',dctype:'rowChart',defaultscale:'',attributes:{}},
+  {id:"panelprov",checked:true,active:false,keyword:"prov",acc:"a_prov",icon:"fa fa-ship",dim:'prov',dctype:'rowChart',defaultscale:'',attributes:{}},
   {id:"panelclass",checked:true,active:false,keyword:"shipclass",acc:"a_shipclass",icon:"fa fa-ship",dim:'class',dctype:'rowChart',defaultscale:'',attributes:{}},
   {id:"paneltype",checked:true,active:false,keyword:"shiptype",acc:"a_shiptype",icon:"fa fa-ship",dim:'type',dctype:'rowChart',defaultscale:'',attributes:{}},
   {id:"panelmode",checked:true,active:false,keyword:"emissionmode",acc:"a_emissionmode",icon:"fa fa-modx",dim:'mode',dctype:'pieChart',defaultscale:'',attributes:{}},
   {id:"panelengine",checked:true,active:false,keyword:"enginecode",acc:"a_enginecode",icon:"fa fa-cogs",dim:'engine',dctype:'pieChart',defaultscale:'',attributes:{}},
   
-  {id:"panelshipid",checked:true,active:false,keyword:"shipid",acc:"a_shipid",icon:"fa fa-cogs",dim:'ship_id',dctype:'rowChart',defaultscale:'',attributes:{}},
-  {id:"paneltripid",checked:true,active:false,keyword:"tripid",acc:"a_tripid",icon:"fa fa-cogs",dim:'trip_id',dctype:'rowChart',defaultscale:'',attributes:{}},
+  // {id:"panelshipid",checked:true,active:false,keyword:"shipid",acc:"a_shipid",icon:"fa fa-cogs",dim:'ship_id',dctype:'rowChart',defaultscale:'',attributes:{}},
+  // {id:"paneltripid",checked:true,active:false,keyword:"tripid",acc:"a_tripid",icon:"fa fa-cogs",dim:'trip_id',dctype:'rowChart',defaultscale:'',attributes:{}},
   
   {id:"panelocountry",checked:true,active:false,keyword:"ocountry",acc:"a_ocountry",icon:"fa fa-cogs",dim:'ocountry',dctype:'rowChart',defaultscale:'',attributes:{}},
   {id:"paneldcountry",checked:true,active:false,keyword:"dcountry",acc:"a_dcountry",icon:"fa fa-cogs",dim:'dcountry',dctype:'rowChart',defaultscale:'',attributes:{}},

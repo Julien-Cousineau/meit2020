@@ -1,12 +1,14 @@
 const fs = require('fs');
 const path = require('path')
+//const mbtiles = require('@mapbox/mbtiles');
 const mbtiles = require('@mapbox/mbtiles');
 const express = require('express');
 
 var router = express.Router();
 
-
+// const MBTILESFOLDER =  path.join(__dirname, '../../shareddrive/data/hex');
 const MBTILESFOLDER =  path.join('data/mbtiles');
+
 
 const tiles ={
   hex16:  'newhex16.mbtiles' ,

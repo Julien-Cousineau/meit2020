@@ -40,6 +40,8 @@ source ~/.bashrc
 cd $MAPD_PATH/systemd
 sudo ./install_mapd_systemd.sh
 
+sudo cp mapd.conf $MAPD_STORAGE/mapd.conf
+
 # Activation
 cd $MAPD_PATH
 sudo systemctl start mapd_server
@@ -62,6 +64,8 @@ CREATE USER publicuser (password = 'password', is_super = 'false');
 GRANT ACCESS, SELECT ON DATABASE meit TO publicuser;
 " | bin/mapdql mapd -u mapd -p HyperInteractive
 
+
+
 # ------------------------------------------------------------------------------
 # Git and NodeJS
 sudo yum install -y git
@@ -76,7 +80,7 @@ export MEIT_PATH=/meit
 export MEIT_MBTILES=/meit/data/mbtiles
 export MEIT_CSV=/meit/data/csv
 export MEIT_PORT=8080
-" >> ~/.bashrc
+" >> 
 
 source ~/.bashrc
 
@@ -85,6 +89,10 @@ sudo mkdir -p $MEIT_PATH
 cd $MEIT_PATH
 sudo chown -R centos:centos .
 git clone https://github.com/Julien-Cousineau/meit2020.git .
+
+#Red hat 
+alternatives --set python /usr/bin/python3
+
 npm install
 
 

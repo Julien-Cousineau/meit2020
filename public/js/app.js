@@ -6,7 +6,7 @@ function App(options){
   this.options = extend(Object.create(this.options), options);
   const self   = this;
   this.pointer = function(){return self;};
-  this.api     = new Api();
+  // this.api     = new Api();
   const hash = location.hash.substr(1);
   if(hash==='fr')this.language='fr';
   
@@ -19,6 +19,9 @@ App.prototype ={
       mapbox:'pk.eyJ1IjoianVsaWVuY291c2luZWF1IiwiYSI6ImNpc2h1OHN2bjAwNzMyeG1za3U0anczcTgifQ.KCp_hDxNidB1n29_yBPXdg',
       mapd:{
         port:9092,
+        // dbName:'mapd',
+        // user:'publicuser',
+        // password:'XXXXXXXX',
         dbName:'meit',
         user:'publicuser',
         password:'password'
@@ -31,8 +34,8 @@ App.prototype ={
     emission: 'nox',
     mapLayer:'mapmeit',
     mapDLayer:'mapmeit',
-    table:'t2015a',
-    tables:[],
+    table:'t2014',
+    tables:[{id:'t2014',checked:true},{id:'t2015'}],
     divider: 1000000,
     keyTags:'',
     panels:'',
@@ -44,10 +47,7 @@ App.prototype ={
     year:'2015',
     container:"#home",
   },
-  // get id_token(){if(!(this._id_token)){this._id_token=localStorage.getItem('id_token');};return this._id_token;},
-  // set id_token(value){this._id_token=value;},
-  // get access_token(){if(!(this._access_token)){this._access_token=localStorage.getItem('access_token');};return this._access_token;},
-  // set acess_token(value){this._acess_token=value;},  
+
   get KEYS(){return this.options.KEYS;},
   set KEYS(value){this.options.KEYS=value;},
   get loaded(){return this.options.loaded;},
@@ -55,15 +55,10 @@ App.prototype ={
   get container(){return this.options.container;},
   get table(){return this.options.table;},
   // set table(value){this.options.table=value;if(this.loaded)this.mapd.createCrossFilter();},
-  // get tables(){return this.options.tables;},
-  // set tables(value){this.options.tables=value;},
-  // get publictables(){
-  //   // if(this.userInfo.app_metadata.roles[0]=="admin"){return this.tables}
-  //   // else {
-  //   //   return this.tables.reduce((acc,item)=>{console.log(item.public);if(item.public)acc.push(item);return acc},[]);
-  //   // }
-    
-  // },
+  set table(value){this.options.table=value;if(this.loaded)this.mapd.createCrossFilter();},
+  get tables(){return this.options.tables;},
+  set tables(value){this.options.tables=value;},
+
   get language(){return this.options.language;},
   set language(value){this.options.language=value;},
   get keywords(){return this.options.keywords;},
@@ -71,28 +66,7 @@ App.prototype ={
   get mapLayer(){return this.options.mapLayer;},
   set mapLayer(value){this.options.mapLayer=value;this.setmapDLayer();},
   get mapDLayer(){return this.options.mapDLayer;},
-  // get access_token(){if(!(this._access_token)){this._access_token=localStorage.getItem('access_token');}
-  //   return this._access_token;    
-  // },
-  // get id_token(){if(!(this._id_token)){this._id_token=localStorage.getItem('id_token');}
-  //   return this._id_token;
-  // },
-  // get userInfo(){
-  //   if(!(this._userInfo)){
-  //     // const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-  //     // const userInfo = {first:"Julien"};
-  //     // if(!(userInfo)){this.logout();}
-  //     // this._userInfo=userInfo;
-  //   }
-  //   return this._userInfo;
-  // },
-  // logout:function() {
-  //   // localStorage.removeItem('id_token');
-  //   // localStorage.removeItem('access_token');
-  //   // localStorage.removeItem('expires_at');
-  //   // localStorage.removeItem('userInfo');
-  //   // window.location.href = "/";
-  // },
+
   // set mapDLayer(value){this.options.mapDLayer=value;},
   setmapDLayer:function(){
     const mapLayer=this.mapLayer;
@@ -131,7 +105,7 @@ App.prototype ={
   refresh:function(){
     const self=this;
     if(this.mapd){
-      // console.log("refresh")
+      console.log("refresh")
       self.mapd.reSizeAll()
       // debounce(function(){self.mapd.reSizeAll()}, 100)
     }
@@ -203,6 +177,7 @@ App.prototype ={
         // return console.log("WARNING:keyword({0}) does not exist".format(keyword));
       }
       if(keywordType==="text")return $(this).text(self.keywords[keyword][self.language]);
+      if(keywordType==="img")return $(this).attr("src",self.keywords[keyword][self.language]);
       if(keywordType==="placeholder")return $(this).attr("placeholder",self.keywords[keyword][self.language]);
       if(keywordType==="title"){return $(this).attr("data-original-title",self.keywords[keyword][self.language]).tooltip();}
     })

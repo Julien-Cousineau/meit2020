@@ -13,6 +13,7 @@
     "download-development-2015": "MEIT_YEAR=2015 NODE_ENV=development node upload/azure-download-csv.js",
     "download-production-2015": "MEIT_YEAR=2015 NODE_ENV=production node upload/azure-download-csv.js",
     "data2db-2015": "MEIT_YEAR=2015 node --max-old-space-size=3800 upload/data2db.js",
+    "start":"node server/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

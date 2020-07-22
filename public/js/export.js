@@ -43,9 +43,11 @@ ExportC.prototype = {
   },
   constructFunc:function(){
     const self=this;
+    const keywords = this.parent.keywords;
+    const language = this.parent.language;
     $('#exportModal').on('show.bs.modal', function (e) {
-      const userinfo =self.parent.userInfo;
-      const user=userinfo.user_metadata.first;
+      // const userinfo =self.parent.userInfo;
+      // const user=userinfo.user_metadata.first;
       const date = new Date();
       const filename ="{0}{1}{2}{3}{4}{5}".format(
         date.getFullYear(),(date.getMonth()+1).pad(2),date.getDate().pad(2),
@@ -55,7 +57,7 @@ ExportC.prototype = {
         date.getHours().pad(2),date.getMinutes().pad(2),date.getSeconds().pad(2));
         
       // console.log(filename)
-      $('#exportuser').val(user);
+      $('#exportuser').val(keywords['exportname'][language]);
       $('#exportdate').val(datestr);
       $('#exportdatabase').val(self.parent.table);
       $('#exportyear').val(self.parent.year);
@@ -92,7 +94,7 @@ ExportC.prototype = {
     
     
     this.summary =[
-      {keyword:"user",id:"user",value:"username",htmltype:'htmlfixlabel'},
+      {keyword:"username",id:"user",value:"username",htmltype:'htmlfixlabel'},
       {keyword:"date",id:"date",value:"2018-01-01",htmltype:'htmlfixlabel'},
       {keyword:"database",id:"database",value:"Table1",htmltype:'htmlfixlabel'},
       {keyword:"unit",id:"unit",value:"xxx",htmltype:'htmlfixlabel'},
@@ -233,31 +235,32 @@ ExportC.prototype = {
     
   },
   getSummarySheet:function(){
-    
+    const keywords = this.parent.keywords;
+    const language = this.parent.language;
    
     let table = [];
     
     this.summary.forEach(item=>{
-      table.push([item.keyword,$('#export{0}'.format(item.id)).val()]);
+      table.push([keywords[item.keyword][language],$('#export{0}'.format(item.id)).val()]);
     });
   
     // table.push(["Units",this.unit]);
     table.push([""]);
-    table.push(["Filters"]);
+    table.push([keywords['filters'][language]]);
     
     const charts = this.parent.charts;
-    const language = this.parent.language;
+    
     charts.forEach(chart=>{
       const keyword = chart.keyword;
       const name = this.parent.keywords[keyword][language];
       const filters = chart.dc.dc.filters();
-      if(!(filters.length)){table.push([name,"None"])}
+      if(!(filters.length)){table.push([name,keywords['none'][language]])}
       else{
         table.push([name].concat(filters));
       }
       
     });
-    const sheetname = "general";
+    const sheetname = keywords['general'][language];
     const ws= XLSX.utils.aoa_to_sheet(table);
     XLSX.utils.book_append_sheet(this.wb, ws, sheetname);
     
@@ -275,6 +278,7 @@ ExportC.prototype = {
     const divider = this.parent.divider;
     const charts = this.parent.charts.reduce((final,chart)=>{if(obj.selectedcharts[chart.id].checked)final.push(chart);return final;},[]);
     const emissions = this.parent.emissions.reduce((final,emission)=>{if(obj.selectedemissions[emission.id].checked)final.push(emission);return final},[]);
+    const keywords = this.parent.keywords;
     const language = this.parent.language;
     let header = [''].concat(emissions.map(function(emission){return emission.id;}));
     
@@ -301,7 +305,8 @@ ExportC.prototype = {
           const keyname = (chart.dim==='meit')?key+1:key;// Hack: for some reason, key0 is meit-1 (changed by map)
           table.push([keyname].concat(row));
         }
-        let sheetname = chart.keyword;
+        
+        let sheetname = keywords['a_'+chart.keyword][language];
         const ws= XLSX.utils.aoa_to_sheet(table);
         XLSX.utils.book_append_sheet(wb, ws, '_'+sheetname);
       });

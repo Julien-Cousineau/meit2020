@@ -51,7 +51,7 @@ Header.prototype ={
   getDiv:function(){
       return  `<div class = 'linkContainer'>
     <div class = 'gcLogoBox'>
-      <img src='/images/sig-eng.png'>
+      <img src='/images/sig-eng.png' keyword="logo" keywordType="img">
     </div>
     <ul class="nav justify-content-end">
       <li class="nav-item">

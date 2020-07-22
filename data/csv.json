@@ -16,6 +16,11 @@
         {"azure":"east_voc_2020-03-06.2020.zip","local":"csv/east_voc_2020-03-06.2020.zip"},
         {"azure":"pacific_voc_2020-03-06.2020.zip","local":"csv/pacific_voc_2020-03-06.2020.zip"}     
         ]
+    },
+    "2014":{
+     "production":[
+        {"azure":"arctic_emissions_2019_04_25.2020.zip","local":"csv/arctic_emissions_2019_04_25.2020.zip"}
+        ]
     }
        
     
