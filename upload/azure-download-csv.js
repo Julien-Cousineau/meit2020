@@ -10,7 +10,7 @@ const to=(promise)=>promise.then(data => [null, data]).catch(err => [err]);
 const MEIT_YEAR = process.env.MEIT_YEAR;
 const NODE_ENV = process.env.NODE_ENV;
 const csv = process.env.MEIT_CSVT || 'csv.json'
-
+const dataPath = process.env.MEIT_CSV;
 const jsonPath = path.join('data',csv);
 
 let rawdata = fs.readFileSync(jsonPath);
@@ -22,7 +22,7 @@ const f=async()=>{
   for(let i in group){
     const item=group[i];
     const name = item.azure; 
-    const file = path.resolve('data',item.local);
+    const file = path.resolve(dataPath,item.local);
     if (!fs.existsSync(file)){
       const bar = new cliProgress.SingleBar({format:  '{bar}' + '| {percentage}% || {value}/{total} Chunks || '+name}, cliProgress.Presets.shades_classic);
       const [err,r] = await to(new Promise((resolve,reject)=>{
