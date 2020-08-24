@@ -9,6 +9,7 @@ const db = new MapDServer();
 const to=(promise)=>promise.then(data => [null, data]).catch(err => [err]);
 
 const MEIT_YEAR = process.env.MEIT_YEAR;
+const MEIT_CSV = process.env.MEIT_CSV;
 
 const jsonPath = path.join('data','csv.json');
 
@@ -24,7 +25,7 @@ const f=async()=>{
   
   for(let i in group){
     const item=group[i];
-    const file = path.resolve('data',item.local);
+    const file = path.resolve(MEIT_CSV,item.local);
     const [err1]=await to(db.copyData(`t${MEIT_YEAR}`,file))
     }
 }
