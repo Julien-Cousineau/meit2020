@@ -15,7 +15,7 @@ class MapDServer {
       connector
       .protocol("http")
       .host("localhost")
-      .port("9090")
+      .port("6278")
       .dbName(DBNAME)
       .user(USER)
       .password(PASSWORD)
