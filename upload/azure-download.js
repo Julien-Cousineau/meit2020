@@ -5,7 +5,7 @@ const blobSvc = azure.createBlobService();
 const cliProgress = require('cli-progress');
  
 // create new progress bar
-
+const MEIT_DATA=process.env.MEIT_DATA;
 
 
 const to=(promise)=>promise.then(data => [null, data]).catch(err => [err]);
@@ -21,7 +21,7 @@ const f=async()=>{
       const item=group[i]  
     
       const name = item.azure; 
-      const file = path.resolve('data',item.local);
+      const file = path.resolve(MEIT_DATA,item.local);
       if (!fs.existsSync(file)){
         const bar = new cliProgress.SingleBar({format:  '{bar}' + '| {percentage}% || {value}/{total} Chunks || '+name}, cliProgress.Presets.shades_classic);
   
