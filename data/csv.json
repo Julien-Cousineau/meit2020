@@ -9,17 +9,17 @@
         {"azure":"pacific_voc_2020-03-06.zip","local":"csv/pacific_voc_2020-03-06.zip"}
         ],
     "production":[
-        {"azure":"arctic_emissions_2019_04_25.2020.zip","local":"csv/arctic_emissions_2019_04_25.2020.zip"},
-        {"azure":"pacific_emissions_2019_04_25.2020.zip","local":"csv/pacific_emissions_2019_04_25.2020.zip"},
-        {"azure":"east_emissions_2019-04-25.2020.zip","local":"csv/east_emissions_2019-04-25.2020.zip"},
-        {"azure":"arctic_voc_2020-03-06.2020.zip","local":"csv/arctic_voc_2020-03-06.2020.zip"},
-        {"azure":"east_voc_2020-03-06.2020.zip","local":"csv/east_voc_2020-03-06.2020.zip"},
-        {"azure":"pacific_voc_2020-03-06.2020.zip","local":"csv/pacific_voc_2020-03-06.2020.zip"}     
+        {"azure":"arctic_emissions_2019_04_25.2020.zip","local":"arctic_emissions_2019_04_25.2020.zip"},
+        {"azure":"pacific_emissions_2019_04_25.2020.zip","local":"pacific_emissions_2019_04_25.2020.zip"},
+        {"azure":"east_emissions_2019-04-25.2020.zip","local":"east_emissions_2019-04-25.2020.zip"},
+        {"azure":"arctic_voc_2020-03-06.2020.zip","local":"arctic_voc_2020-03-06.2020.zip"},
+        {"azure":"east_voc_2020-03-06.2020.zip","local":"east_voc_2020-03-06.2020.zip"},
+        {"azure":"pacific_voc_2020-03-06.2020.zip","local":"pacific_voc_2020-03-06.2020.zip"}     
         ]
     },
     "2014":{
      "production":[
-        {"azure":"arctic_emissions_2019_04_25.2020.zip","local":"csv/arctic_emissions_2019_04_25.2020.zip"}
+        {"azure":"arctic_emissions_2019_04_25.2020.zip","local":"arctic_emissions_2019_04_25.2020.zip"}
         ]
     }
        
