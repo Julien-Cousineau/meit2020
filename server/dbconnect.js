@@ -9,9 +9,11 @@ const PASSWORD = process.env.MAPD_PASSWORD;
 const to=(promise)=>promise.then(data => [null, data]).catch(err => [err]);
 
 class MapDServer {
-  connect(){
+  con=null;
+  connect(){    
     const connector = new Connector();
     return new Promise((resolve, reject)=>{
+      if(this.con)return resolve(this.con);      
       connector
       .protocol("http")
       .host("localhost")
@@ -21,6 +23,7 @@ class MapDServer {
       .password(PASSWORD)
       .connect((err, results) => { 
           if(err)return reject(err);
+          this.con=results;
           resolve(results);
         }); 
     });
