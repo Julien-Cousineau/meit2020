@@ -18,7 +18,7 @@ App.prototype ={
     KEYS:{
       mapbox:'pk.eyJ1IjoianVsaWVuY291c2luZWF1IiwiYSI6ImNpc2h1OHN2bjAwNzMyeG1za3U0anczcTgifQ.KCp_hDxNidB1n29_yBPXdg',
       mapd:{
-        port:9092,
+        // port:9092,
         // dbName:'mapd',
         // user:'publicuser',
         // password:'XXXXXXXX',
@@ -34,8 +34,8 @@ App.prototype ={
     emission: 'nox',
     mapLayer:'mapmeit',
     mapDLayer:'mapmeit',
-    table:'t2014',
-    tables:[{id:'t2014',checked:true},{id:'t2015'}],
+    table:'DB_2015',
+    tables:[{id:'DB_2015',checked:true},{id:'DB_2016'}],
     divider: 1000000,
     keyTags:'',
     panels:'',

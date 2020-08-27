@@ -113,3 +113,4 @@ dist
 *.geojson
 *.hex
 setSecret.sh
+setSecret.txt

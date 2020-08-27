@@ -11,8 +11,9 @@ const MEIT_YEAR = process.env.MEIT_YEAR;
 const NODE_ENV = process.env.NODE_ENV;
 const csv = process.env.MEIT_CSVT || 'csv.json'
 const dataPath = process.env.MEIT_CSV;
+console.log(MEIT_YEAR,NODE_ENV)
 const jsonPath = path.join('data',csv);
-
+console.log(dataPath)
 let rawdata = fs.readFileSync(jsonPath);
 let json = JSON.parse(rawdata);
 

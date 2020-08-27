@@ -8,25 +8,29 @@ const db = new MapDServer();
 
 const to=(promise)=>promise.then(data => [null, data]).catch(err => [err]);
 
-const MEIT_YEAR = process.env.MEIT_YEAR;
+const argv=process.argv;
+const options=argv[2] || 0;
+const MEIT_YEAR=argv[3];
+const name=argv[4];
+
+
+
+
 const MEIT_CSV = process.env.MEIT_CSV;
-
-const jsonPath = path.join('data','csv.json');
-
-let rawdata = fs.readFileSync(jsonPath);
-let json = JSON.parse(rawdata);
-
-const group = json[MEIT_YEAR]['production'];
 
 
 const f=async()=>{
-  const [err0]=await to(db.dropTable(`t${MEIT_YEAR}`))
-  const [err1]=await to(db.createTable(`t${MEIT_YEAR}`,path.resolve('data','schema','template.2020.sql')))
+  if(options==0){
+    const [err0]=await to(db.dropTable(`DB_${MEIT_YEAR}`))
+    const [err1]=await to(db.createTable(`DB_${MEIT_YEAR}`,path.resolve('data','schema','template.2020.sql')))  
+  } else{
+  const file = path.resolve(MEIT_CSV,name);
+  const [err2]=await to(db.copyData(`DB_${MEIT_YEAR}`,file))
+
+    
+  }
   
-  for(let i in group){
-    const item=group[i];
-    const file = path.resolve(MEIT_CSV,item.local);
-    const [err1]=await to(db.copyData(`t${MEIT_YEAR}`,file))
-    }
+  
+    
 }
 f()

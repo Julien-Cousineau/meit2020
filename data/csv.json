@@ -1,12 +1,12 @@
 {
-   "2015":{
+   "2015_":{
     "development":[
-        {"azure":"arctic_emissions_2019_04_25","local":"csv/arctic_emissions_2019_04_25.zip","overwrite":false},
-        {"azure":"pacific_emissions_2019_04_25","local":"csv/pacific_emissions_2019_04_25.zip"},
-        {"azure":"east_emissions_2019-04-25","local":"csv/east_emissions_2019-04-25.zip"},
-        {"azure":"arctic_voc_2020-03-06.zip","local":"csv/arctic_voc_2020-03-06.zip"},
-        {"azure":"east_voc_2020-03-06.zip","local":"csv/east_voc_2020-03-06.zip"},
-        {"azure":"pacific_voc_2020-03-06.zip","local":"csv/pacific_voc_2020-03-06.zip"}
+        {"azure":"arctic_emissions_2019_04_25","local":"arctic_emissions_2019_04_25.zip","overwrite":false},
+        {"azure":"pacific_emissions_2019_04_25","local":"pacific_emissions_2019_04_25.zip"},
+        {"azure":"east_emissions_2019-04-25","local":"east_emissions_2019-04-25.zip"},
+        {"azure":"arctic_voc_2020-03-06.zip","local":"arctic_voc_2020-03-06.zip"},
+        {"azure":"east_voc_2020-03-06.zip","local":"east_voc_2020-03-06.zip"},
+        {"azure":"pacific_voc_2020-03-06.zip","local":"pacific_voc_2020-03-06.zip"}
         ],
     "production":[
         {"azure":"arctic_emissions_2019_04_25.2020.zip","local":"arctic_emissions_2019_04_25.2020.zip"},
@@ -17,6 +17,18 @@
         {"azure":"pacific_voc_2020-03-06.2020.zip","local":"pacific_voc_2020-03-06.2020.zip"}     
         ]
     },
+   "2015":{
+    "development":[
+        {"azure":"2015_MEIT_Emissions","local":"2015_MEIT_Emissions.zip","overwrite":false},
+        {"azure":"2016_MEIT_Emissions","local":"2016_MEIT_Emissions.zip","overwrite":false},
+        {"azure":"2017_MEIT_Emissions","local":"2017_MEIT_Emissions.zip","overwrite":false},
+        {"azure":"2018_MEIT_Emissions","local":"2018_MEIT_Emissions.zip","overwrite":false}
+        ],
+    "production":[
+        {"azure":"2015_MEIT_Emissions.2020.zip","local":"2015_MEIT_Emissions.2020.zip","overwrite":false}
+        
+        ]
+    },    
     "2014":{
      "production":[
         {"azure":"arctic_emissions_2019_04_25.2020.zip","local":"arctic_emissions_2019_04_25.2020.zip"}

@@ -80,7 +80,9 @@ export MEIT_PATH=/meit
 export MEIT_MBTILES=/meit/data/mbtiles
 export MEIT_CSV=/meit/data/csv
 export MEIT_PORT=8080
-" >> 
+export MAPD_PORT=9090
+export DBNAME=meit
+"  
 
 source ~/.bashrc
 
@@ -125,11 +127,14 @@ sudo mkdir /etc/nginx/sites-enabled
 sudo setsebool httpd_can_network_connect on -P # Allow proxying
 sudo cp nginx/nginx.conf /etc/nginx/nginx.conf
 sudo cp nginx/ec-meit.conf /etc/nginx/sites-enabled/ec-meit.conf
+
 sudo cp nginx/general.conf /etc/nginx/nginxconfig.io/general.conf
 sudo cp nginx/security.conf /etc/nginx/nginxconfig.io/security.conf
 sudo cp nginx/proxy.conf /etc/nginx/nginxconfig.io/proxy.conf
 sudo openssl dhparam -out /etc/nginx/dhparam.pem 2048 
 sudo nginx -t && sudo systemctl reload nginx
+
+sudo cp nginx/ec-meit.test.conf /etc/nginx/sites-enabled/ec-meit.conf
 
 # 
 cd $MEIT_PATH

@@ -5,19 +5,21 @@ const Connector = require("@mapd/connector");
 const DBNAME = process.env.DBNAME;
 const USER = process.env.MAPD_USER;
 const PASSWORD = process.env.MAPD_PASSWORD;
+const MAPD_PORT = process.env.MAPD_PORT || 6278;
 
 const to=(promise)=>promise.then(data => [null, data]).catch(err => [err]);
 
 class MapDServer {
   con=null;
   connect(){    
+    
     const connector = new Connector();
     return new Promise((resolve, reject)=>{
       if(this.con)return resolve(this.con);      
       connector
       .protocol("http")
       .host("localhost")
-      .port("6278")
+      .port(MAPD_PORT)
       .dbName(DBNAME)
       .user(USER)
       .password(PASSWORD)
@@ -29,8 +31,7 @@ class MapDServer {
     });
   }
   async query(query,options){
-    const {connect}=this;
-    const [err,con] = await to(connect());
+    const [err,con] = await to(this.connect());
     if(err)return err;
     const [e,results] = await to(new Promise((resolve,reject)=>{
       con.query(query, options, (err, r)=>{

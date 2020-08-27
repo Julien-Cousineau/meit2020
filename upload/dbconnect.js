@@ -5,7 +5,7 @@ const Connector = require("@mapd/connector");
 const DBNAME = process.env.DBNAME;
 const USER = process.env.MAPD_USER;
 const PASSWORD = process.env.MAPD_PASSWORD;
-
+const MAPD_PORT=process.env.MAPD_PORT;
 const to=(promise)=>promise.then(data => [null, data]).catch(err => [err]);
 
 class MapDServer {
@@ -15,7 +15,7 @@ class MapDServer {
       connector
       .protocol("http")
       .host("localhost")
-      .port("6278")
+      .port(MAPD_PORT)
       .dbName(DBNAME)
       .user(USER)
       .password(PASSWORD)
