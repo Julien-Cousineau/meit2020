@@ -4,9 +4,8 @@ After=network.target
 
 [Service]
 Environment=NODE_VERSION=14.2.0
-ExecStart=/home/ec2-user/.nvm/nvm-exec node
-WorkingDirectory=/home/ec2-user/meit2020
-#User=ec2-user
+ExecStart=/usr/bin/node server/server.js
+WorkingDirectory=/opt/meit
 Restart=always
 # Restart service after 10 seconds if node service crashes
 RestartSec=10
