@@ -7,7 +7,9 @@ const express = require('express');
 var router = express.Router();
 
 // const MBTILESFOLDER =  path.join(__dirname, '../../shareddrive/data/hex');
-const MBTILESFOLDER =  path.join('data/mbtiles');
+// const MBTILESFOLDER =  path.join('data/mbtiles');
+const MBTILESFOLDER=process.env.MEIT_MBTILES;
+
 
 
 const tiles ={

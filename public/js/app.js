@@ -35,7 +35,7 @@ App.prototype ={
     mapLayer:'mapmeit',
     mapDLayer:'mapmeit',
     table:'DB_2015',
-    tables:[{id:'DB_2015',checked:true},{id:'DB_2016'}],
+    tables:[{id:'DB_2015',checked:true},{id:'DB_2016'},{id:'DB_2017'},{id:'DB_2018'}],
     divider: 1000000,
     keyTags:'',
     panels:'',
