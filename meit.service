@@ -3,8 +3,8 @@ Description=MEIT Server
 After=network.target
 
 [Service]
-Environment=NODE_VERSION=14.2.0
-ExecStart=/usr/bin/node server/server.js
+Environment=MEIT_MBTILES=/var/lib/omnisci/nrc-data-files/mbtiles
+ExecStart=/usr/bin/node /opt/meit/server/server.js
 WorkingDirectory=/opt/meit
 Restart=always
 # Restart service after 10 seconds if node service crashes
