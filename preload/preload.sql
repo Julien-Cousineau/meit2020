@@ -1,4 +1,6 @@
+USER admin meit {
 SELECT SUM(nox) from DB_2015;
 SELECT SUM(nox) from DB_2016;
 SELECT SUM(nox) from DB_2017;
 SELECT SUM(nox) from DB_2018;
+}
