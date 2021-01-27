@@ -7,7 +7,9 @@ const YEARS  = CONSTANTS.YEARS;
 // const MODES    = CONSTANTS.MODES;
 const EMISSIONS= CONSTANTS.EMISSIONS;
 const FIELDS   = CONSTANTS.FIELDS;
+const FIELDSS   = CONSTANTS.FIELDSS;
 const MAPFIELDS= CONSTANTS.MAPFIELDS;
+const SCRAPPER=CONSTANTS.SCRAPPER;
 const util     = require('./util');
 
 const fs  = require('fs');
@@ -72,6 +74,7 @@ Convert.prototype = {
         {id:'PROV',file:'provinces.geojson'},
       ],
     testing:false,
+    scrapper:false,
     shipinput:[
      {id:0,file:'pacific_growth_factors_02062018.csv'},
      {id:1,file:'east_arctic_greatlakes_forecast_factors_02062018.csv'}
@@ -201,7 +204,9 @@ Convert.prototype = {
     let tcount=0,count=0;
     self.meta.action='Reading ' + path.basename(input);
     let hrstart = process.hrtime();
-    outstream.write(FIELDS.join(",") + "\n");
+    
+    if(!this.options.scrapper)outstream.write(FIELDS.join(",") + "\n");
+    else outstream.write(FIELDSS.join(",") + "\n");
     // outstream.write('{"type":"FeatureCollection","features":[');
     Papa.parse(instream, {
       header: true,
@@ -255,19 +260,37 @@ Convert.prototype = {
       for(let i=0,n=EMISSIONS.length;i<n;i++){
         const emission = EMISSIONS[i];
         const prop = (engine==='voc' && emission ==='voc')?'voc':engine + "_" + emission;
+        
         const pvalue = parseFloat(obj[prop]);
         const value = pvalue ? pvalue : 0;
         
         if(value>0){allzeros=false;}
         ping[emission]=value;
       }
+      if(this.options.scrapper){
+        for(let i=0,n=SCRAPPER.length;i<n;i++){
+          let emission = SCRAPPER[i];
+          const key=emission=='llead'?'lead':emission;
+          const prop = engine + "_ww_" + key;
+        
+          const pvalue = parseFloat(obj[prop]);
+          const value = pvalue ? pvalue : 0;
+        
+        if(value>0){allzeros=false;}
+        ping[emission]=value;
+        }      
+      }
+    
+      
+      
       if(!(allzeros)){
         const ship_id = obj.ship_id;
         const point_id= '{0}_{1}'.format(obj.lat,obj.long);
 //        console.log(point_id)
         const mode    = obj.activity_type;
         const ip = (obj.ip && obj.ip.toLowerCase()==='true')?1:0;
-        const datetime= Date.parse(obj.date_time);
+        // const datetime= Date.parse(obj.date_time);
+        const datetime= Date.parse("2000-01-01T00:00:00");
         
         if(!(ships[ship_id])){
           if(!(this.missingid[ship_id])){
@@ -353,8 +376,8 @@ Convert.prototype = {
               
           
         }
-
-        const data=FIELDS.map(f=>ping[f]);
+        
+        const data=this.options.scrapper?FIELDSS.map(f=>ping[f]):FIELDS.map(f=>ping[f]);
         this.iping++;
         
         callback(data.join(",") + "\n");

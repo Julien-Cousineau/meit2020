@@ -261,6 +261,18 @@ const options ={
     voc:{en:'VOC',fr:'COV'},
     
     
+    inst_ph:{en:'inst_ph',fr:'inst_ph'},
+    pahphe:{en:'pahphe',fr:'pahphe'},
+    ntu:{en:'ntu',fr:'ntu'}, 
+    nitrates:{en:'Nitrates',fr:'Nitrates'}, 
+    vanadium:{en:'Vanadium',fr:'Vanadium'}, 
+    nickle:{en:'Nickle',fr:'Nickle'}, 
+    copper:{en:'Copper',fr:'Cuivre'},
+    cadmium:{en:'Cadmium',fr:'Cadmium'}, 
+    mercury:{en:'Mercury',fr:'Mercure'}, 
+    llead:{en:'Lead',fr:'Plomb'}, 
+   
+    
 
     
     g:{en:'grams',fr:'grammes'},
@@ -399,6 +411,18 @@ charts:[
   {id:'co2e',keyword: 'co2e',checked:true},
   {id:'fuel_cons',keyword: 'fuel_cons',checked:true},
   {id:'voc',keyword: 'voc',checked:true},
+  ],
+  semissions: [
+  {id:'inst_ph',keyword:'inst_ph',checked:true}, 
+  {id:'pahphe',keyword: 'pahphe',checked:true}, 
+  {id:'ntu',keyword:'ntu',checked:true},
+  {id:'nitrates',keyword:'nitrates',checked:true}, 
+  {id:'vanadium',keyword:'vanadium',checked:true},
+  {id:'nickle',keyword: 'nickle',checked:true},
+  {id:'copper',keyword: 'copper',checked:true},
+  {id:'cadmium',keyword: 'cadmium',checked:true},
+  {id:'mercury',keyword: 'mercury',checked:true},
+  {id:'llead',keyword: 'llead',checked:true},
   ],
   units:[
     {id:'g',keyword:'grams',divider:1}, 

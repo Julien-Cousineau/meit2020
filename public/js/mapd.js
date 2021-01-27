@@ -59,7 +59,8 @@ MapD.prototype = {
     new MapdCon()
     .protocol("https")
     .host(this.IP)
-    .port("/api")
+    // .port("/api")
+    .port(9092)
     // .host(this.IP)
     // .port(keys.port)
     .dbName(keys.dbName)
@@ -67,6 +68,7 @@ MapD.prototype = {
     .password(keys.password)
     .connect(function(error, con) {
        self.con=con;
+       
        crossfilter.crossfilter(con, table).then(function(crossFilter){return self.crossFilterSetup(crossFilter);})
     });
   },
@@ -115,7 +117,8 @@ MapD.prototype = {
                     "{0}*{1}".format(this.emission,fuelFactor):
                     "{0}*{1}*{2}*0.015625".format(this.emission,fuelFactor,factor);
     }
-     return [{expression: exp,agg_mode:"sum",name: this.emission}];
+    const agg_mode=this.parent.options.avgemissions.includes(this.emission)?"avg":"sum";
+     return [{expression: exp,agg_mode:agg_mode,name: this.emission}];
   },
   reduceTrendFunction:function(){
     return this.parent.options.years.map(item=>{

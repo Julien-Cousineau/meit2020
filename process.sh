@@ -93,3 +93,5 @@ function run(){
 # run 2017_MEIT_Emissions "arctic_emissions_2020-06-15 east_emissions_2020-06-15 pacific_emissions_2020-06-15" 2017
 # run 2018_MEIT_Emissions "arctic_emissions_2020-06-16 east_emissions_2020-06-16 pacific_emissions_2020-06-16" 2018
 cd ../..
+
+

@@ -54,7 +54,9 @@ Footer.prototype ={
     this.constructFunc();
   },
   render:function(){
+   
     $('.footer').append(this.html());
+    console.log("renderfooter")
     this.dropdownMenuFunc('emission');
     this.dropdownMenuFunc('unit');
     this.dropdownMenuFunc('year');
@@ -84,7 +86,7 @@ Footer.prototype ={
     
   },
   dropdownMenu:function(name,list,title,tooltip){
-    let lis=list.map(item=>`<li><a href="#" _id="{0}" keyword="{0}" keywordType="text">{1}</a></li>`.format(item.id,item.keyword)).join("");
+    let lis=list.map(item=>`<li><a href="#" _id="{0}" keyword="{0}" disabled keywordType="text">{1}</a></li>`.format(item.id,item.keyword)).join("");
     let ul = `<ul class="dropdown-menu" id="ul_{0}">{1}</ul>`.format(name,lis);
     let html =`<div class="btn-group">
                 <div data-toggle="dropdown" data-toggle="tooltip" data-placement="top" title="{2}" keyword="{2}" keywordType="title">
@@ -104,14 +106,22 @@ Footer.prototype ={
             $inp = $target.find( 'input' );
       if(type==="gis" || type==="table")$('.dropdown-menu.{0} li input'.format(name)).prop("checked",false);
       if(type==="gis")self.parent.mapContainer.changeLayer(panelid);
-      console.log(panelid)
+      
       if(type==="table")self.parent.table=panelid;
+      if(type==="table"){
+        const emissions=self.parent.emissions;
+        let lis=emissions.map(item=>`<li><a href="#" _id="{0}" keyword="{0}" disabled keywordType="text">{1}</a></li>`.format(item.id,item.keyword)).join("");
+        $("#ul_emissions").html(lis);
+        self.dropdownMenuFunc('emission');
+        self.parent.changeLabels();
+      }
       
       $inp.prop("checked", !$inp.prop("checked"));
       const $panel=$('.x_panel_container[panelid={0}]'.format(panelid));
       // setTimeout( function() { $inp.prop("checked", !$inp.prop("checked")) }, 0);
       // $panel.toggleClass("show hide");
       $inp.prop("checked")?$panel.show():$panel.hide();
+      
 
       $( event.target ).blur();
       return false; //to keep dropdown open!important
@@ -120,9 +130,11 @@ Footer.prototype ={
   },
   dropdownMenuFunc:function(name){
     const self=this;
+    
     $("#ul_{0}s li a".format(name)).click(function(){
       let selText = $(this).text();
       $(this).closest('div').children('div').children('div').text(selText);
+      
       var _id = $(this).attr('_id');
       self.parent[name] = _id;
       self.parent.refresh();
@@ -181,9 +193,7 @@ Footer.prototype ={
                   <span class="number-display">&nbsp: </span>
                   <div class="number-display" id="totalnumber"></div>
                   {1}
-                  <span>&nbsp(</span>
-                  {2}
-                  <span>)</span>
+                  
                 </div>
                 <div class="col-sm-4">
                   <ul class="nav navbar-right panel_toolbox">

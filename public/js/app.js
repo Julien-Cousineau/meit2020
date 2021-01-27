@@ -35,12 +35,15 @@ App.prototype ={
     mapLayer:'mapmeit',
     mapDLayer:'mapmeit',
     table:'DB_2015',
-    tables:[{id:'DB_2015',checked:true},{id:'DB_2016'},{id:'DB_2017'},{id:'DB_2018'}],
+    tables:[{id:'DB_2015',checked:true},{id:'DB_2016'},{id:'DB_2017'},{id:'DB_2018'},{id:'S_2018'}],
+    stables:['S_2018'],
     divider: 1000000,
     keyTags:'',
     panels:'',
     charts:'',
     emissions:'',
+    semissions:[],
+    avgemissions:['inst_ph','ntu'],
     unit:'t',
     units:'',
     years:'',
@@ -55,18 +58,26 @@ App.prototype ={
   get container(){return this.options.container;},
   get table(){return this.options.table;},
   // set table(value){this.options.table=value;if(this.loaded)this.mapd.createCrossFilter();},
-  set table(value){this.options.table=value;if(this.loaded)this.mapd.createCrossFilter();},
+  set table(value){
+    
+    if(!this.options.stables.includes(value)&&!this.options.semissions.includes(this.emission))this.emission='nox';
+    this.options.table=value;
+    if(this.loaded)this.mapd.createCrossFilter();
+  },
   get tables(){return this.options.tables;},
   set tables(value){this.options.tables=value;},
 
   get language(){return this.options.language;},
   set language(value){this.options.language=value;},
   get keywords(){return this.options.keywords;},
-  get emissions(){return this.options.emissions;},
+  get emissions(){return this.getEmissions(this.table)},
   get mapLayer(){return this.options.mapLayer;},
   set mapLayer(value){this.options.mapLayer=value;this.setmapDLayer();},
   get mapDLayer(){return this.options.mapDLayer;},
-
+  
+  getEmissions(table){
+    return this.options.stables.includes(table)?this.options.emissions.concat(this.options.semissions):this.options.emissions;
+  },
   // set mapDLayer(value){this.options.mapDLayer=value;},
   setmapDLayer:function(){
     const mapLayer=this.mapLayer;
