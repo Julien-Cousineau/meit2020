@@ -153,3 +153,12 @@ npm run data2db-2015
 sudo cp meit.service /etc/systemd/system/meit.service
 sudo systemctl start meit.service
 sudo systemctl enable meit.service
+
+
+export DBNAME=meit
+export MAPD_USER=mapd
+export MAPD_PASSWORD=6gJ4G8=GbxZCtLAY
+export MAPD_PORT=6274
+export MEIT_CSV=/var/lib/omnisci/nrc-data-files/
+export MEIT_CSV=/home/julien.cousineau/meit/data/
+
