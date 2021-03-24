@@ -33,7 +33,22 @@
      "production":[
         {"azure":"arctic_emissions_2019_04_25.2020.zip","local":"arctic_emissions_2019_04_25.2020.zip"}
         ]
+    },
+    "Scrubber":{
+     "production":[
+        {"azure":"2019_arctic_emissions","local":"scrubber_2019_arctic_emissions.zip"},
+        {"azure":"2019_east_emissions","local":"scrubber_2019_east_emissions.zip"},
+        {"azure":"2019_pacific_emissions","local":"scrubber_2019_pacific_emissions.zip"}
+        ]
+    },
+    "Scrubberv2":{
+     "production":[
+        {"azure":"2019_arctic_emissions_2021-03-19.scrubber.zip","local":"2019_arctic_emissions_2021-03-19.scrubber.zip"},
+        {"azure":"2019_pacific_emissions_2021-03-19.scrubber.zip","local":"2019_pacific_emissions_2021-03-19.scrubber.zip"},
+        {"azure":"2019_east_emissions_2021-03-19.scrubber","local":"2019_east_emissions_2021-03-19.scrubber.zip"}
+        ]
     }
+    
        
     
    

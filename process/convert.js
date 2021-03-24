@@ -24,6 +24,20 @@ const FOLDER = {
   convert:path.join('data','csv'),
   geojson:path.join('data','geojson')
 };
+const parseDate=(str)=>{
+  // const [date,time] = str.split(" ");
+  // const [day,month,year]=date.split("/");
+  // const [hour,min]=time.split(":");
+  // console.log(str,date,time.day,month,year,hour,min,parseInt(year, 10),parseInt(month, 10) - 1,parseInt(day, 10),parseInt(hour, 10),parseInt(min, 10))
+  // return new Date(parseInt(year, 10),
+  //                 parseInt(month, 10) - 1,
+  //                 parseInt(day, 10),
+  //                 parseInt(hour, 10),
+  //                 parseInt(min, 10),
+  //                 0
+  //                 );
+  
+}
 
 function Convert(options){
   const self   = this;
@@ -272,11 +286,16 @@ Convert.prototype = {
           let emission = SCRAPPER[i];
           const key=emission=='llead'?'lead':emission;
           const prop = engine + "_ww_" + key;
-        
+          
+          
           const pvalue = parseFloat(obj[prop]);
           const value = pvalue ? pvalue : 0;
-        
-        if(value>0){allzeros=false;}
+          // if(this.irow%1000==0)console.log(prop,obj[prop],pvalue,value);
+          
+          if(value>0){
+            allzeros=false;
+            // console.log(prop,obj[prop],pvalue,value);
+          }
         ping[emission]=value;
         }      
       }
@@ -289,12 +308,14 @@ Convert.prototype = {
 //        console.log(point_id)
         const mode    = obj.activity_type;
         const ip = (obj.ip && obj.ip.toLowerCase()==='true')?1:0;
-        // const datetime= Date.parse(obj.date_time);
-        const datetime= Date.parse("2000-01-01T00:00:00");
+        // const datetime= this.options.scrapper?parseDate(obj.date_time):Date.parse(obj.date_time);
+        const datetime=Date.parse(obj.date_time);
+        // const datetime= Date.parse("2000-01-01T00:00:00");
         
         if(!(ships[ship_id])){
           if(!(this.missingid[ship_id])){
             this.missingid[ship_id]=true;
+            console.log(datetime)
             console.log("Cannot find ship_id : " + ship_id);
           }
         }

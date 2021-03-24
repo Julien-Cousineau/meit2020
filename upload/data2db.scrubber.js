@@ -21,13 +21,13 @@ const MEIT_CSV = process.env.MEIT_CSV;
 
 const f=async()=>{
   if(options==0){
-    const [err0]=await to(db.dropTable(`S_${MEIT_YEAR}`))
-    console.log("ERROR",err0)
-    const [err1]=await to(db.createTable(`S_${MEIT_YEAR}`,path.resolve('data','schema','template.scrubber.sql')))  
-    console.log("ERROR",err1)
+    const [err0,info0]=await to(db.dropTable(`DB_${MEIT_YEAR}`))
+    console.log("ERROR",err0,info0)
+    const [err1,info1]=await to(db.createTable(`DB_${MEIT_YEAR}`,path.resolve('data','schema','template.scrubber.sql')))  
+    console.log("ERROR",err1,info1)
   } else{
   const file = path.resolve(MEIT_CSV,name);
-  const [err2]=await to(db.copyData(`S_${MEIT_YEAR}`,file))
+  const [err2]=await to(db.copyData(`DB_${MEIT_YEAR}`,file))
   console.log("ERROR",err2)
 
     
