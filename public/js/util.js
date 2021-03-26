@@ -1,3 +1,4 @@
+/*global d3*/
 
 function extend(dest, src) {
     for (var i in src) dest[i] = src[i];
@@ -107,3 +108,42 @@ if (!String.prototype.format) {
     });
   };
 }
+
+const formatLegend=function(x){
+    var formatSi = d3.format(".2s");
+    var formate = d3.format(".1e");
+    var formatf = d3.format(".4n");
+    var s = formatSi(x);
+    if(x==0)return s;
+    if (x< 0.001)return formate(x);
+    return s;
+    
+  }
+const formatTotal=function(x){
+    var formatSi = d3.format(".6s");
+    var formate = d3.format(".1e");
+    var formatf = d3.format(".4n");
+    var s = formatSi(x);
+    
+    if(this.language =='en'){
+      switch (s[s.length - 1]) {
+        case "k": return s.slice(0, -1) + " thousand";
+        case "M": return s.slice(0, -1) + " million";
+        case "G": return s.slice(0, -1) + " billion";
+        case "T": return s.slice(0, -1) + " trillion";
+        case "m": return formatf(x);
+     }
+    } else {
+      switch (s[s.length - 1]) {
+        case "k": return s.slice(0, -1) + " mille";
+        case "M": return s.slice(0, -1) + " million";
+        case "G": return s.slice(0, -1) + " milliard";
+        case "T": return s.slice(0, -1) + " billion";
+        case "m": return formatf(x);
+     }
+    }
+     if(x==0){return s;}
+     if (x< 0.001){return formate(x);}
+    
+     return s;
+  }

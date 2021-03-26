@@ -1,4 +1,4 @@
-/*global $,extend,localStorage*/
+/*global $,extend,localStorage,formatLegend*/
 
 
 function MapContainer(parent,options,callback){
@@ -244,7 +244,7 @@ MapContainer.prototype = {
       const color = xscale(value);
       const item = div.append('div');
       item.append('span').attr('class','legend-key').style('background',color);
-      item.append('span').text(self.parent.mapd.formatLegend(value/self.divider) + " " + self.unit)  
+      item.append('span').text(formatLegend(value/self.divider) + " " + self.unit)  
     })
   },
   addSelectButton:function(){
