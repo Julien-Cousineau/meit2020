@@ -290,7 +290,13 @@ Convert.prototype = {
           
           const pvalue = parseFloat(obj[prop]);
           const value = pvalue ? pvalue : 0;
-          // if(this.irow%1000==0)console.log(prop,obj[prop],pvalue,value);
+          // if(value>0 && key=="ntu" || key=="pahphe"){
+          //   if(value>0){
+          //     console.log(prop,obj,pvalue,value);    
+          //   }
+            
+          // }
+          
           
           if(value>0){
             allzeros=false;
@@ -315,8 +321,8 @@ Convert.prototype = {
         if(!(ships[ship_id])){
           if(!(this.missingid[ship_id])){
             this.missingid[ship_id]=true;
-            console.log(datetime)
-            console.log("Cannot find ship_id : " + ship_id);
+            // console.log(datetime)
+            // console.log("Cannot find ship_id : " + ship_id);
           }
         }
         

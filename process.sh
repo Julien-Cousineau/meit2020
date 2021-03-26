@@ -93,5 +93,9 @@ function run(){
 # run 2017_MEIT_Emissions "arctic_emissions_2020-06-15 east_emissions_2020-06-15 pacific_emissions_2020-06-15" 2017
 # run 2018_MEIT_Emissions "arctic_emissions_2020-06-16 east_emissions_2020-06-16 pacific_emissions_2020-06-16" 2018
 cd ../..
+file=2019_arctic_emissions_2021-03-19.scrubber
+az storage blob download --container-name ecmeit --name $file.zip --file $file.zip --account-name $AZURE_STORAGE_ACCOUNT --account-key $AZURE_STORAGE_ACCESS_KEY
+
+
 
 

@@ -9,35 +9,41 @@
 # node upload/data2db.scrubber.js 0 2019
 # node upload/data2db.scrubber.js 1 2019 2019_arctic_emissions_2021-03-19.scrubber.csv  --max-old-space-size=4000
 
-
+# node process/index.js data/csv/2019_arctic_emissions_2021-03-19.csv data/csv/2019_arctic_emissions_2021-03-19.scrubber.csv true --max-old-space-size=4000
 # node process/index.js data/csv/2019_pacific_emissions_2021-03-19.csv data/csv/2019_pacific_emissions_2021-03-19.scrubber.csv true --max-old-space-size=4000
 # node process/index.js data/csv/2019_east_emissions_2021-03-19.csv data/csv/2019_east_emissions_2021-03-19.scrubber.csv true --max-old-space-size=4000
 
 # node upload/data2db.scrubber.js 0 2019
 # node upload/data2db.scrubber.js 1 2019 2019_pacific_emissions_2021-03-19.scrubber.csv  --max-old-space-size=4000
 
-# cd data/csv
-# file=2019_arctic_emissions_2021-03-19.scrubber
-# zip $file.zip $file.csv
-# az storage blob upload --container-name ecmeit --name $file.zip --file $file.zip --account-name $AZURE_STORAGE_ACCOUNT --account-key $AZURE_STORAGE_ACCESS_KEY
+cd data/csv
+file=2019_arctic_emissions_2021-03-19.scrubber
+zip $file.zip $file.csv
+az storage blob upload --container-name ecmeit --name $file.zip --file $file.zip --account-name $AZURE_STORAGE_ACCOUNT --account-key $AZURE_STORAGE_ACCESS_KEY
+rm $file.zip
+# rm $file.csv
+
+file=2019_pacific_emissions_2021-03-19.scrubber
+zip $file.zip $file.csv
+az storage blob upload --container-name ecmeit --name $file.zip --file $file.zip --account-name $AZURE_STORAGE_ACCOUNT --account-key $AZURE_STORAGE_ACCESS_KEY
+rm $file.zip
+# rm $file.csv
+
+file=2019_east_emissions_2021-03-19.scrubber
+zip $file.zip $file.csv
+az storage blob upload --container-name ecmeit --name $file.zip --file $file.zip --account-name $AZURE_STORAGE_ACCOUNT --account-key $AZURE_STORAGE_ACCESS_KEY
+cd ../..
 # rm $file.zip
 # rm $file.csv
+
+
+# node upload/data2db.scrubber.js 0 2019
+# node upload/data2db.scrubber.js 1 2019 2019_arctic_emissions_2021-03-19.scrubber.zip  --max-old-space-size=4000
+# node upload/data2db.scrubber.js 1 2019 2019_pacific_emissions_2021-03-19.scrubber.zip  --max-old-space-size=4000
+# node upload/data2db.scrubber.js 1 2019 2019_east_emissions_2021-03-19.scrubber.zip  --max-old-space-size=4000
+
+# file=2019_arctic_emissions_2021-03-19.scrubber
+# az storage blob download --container-name ecmeit --name $file.zip --file $file.zip --account-name $AZURE_STORAGE_ACCOUNT --account-key $AZURE_STORAGE_ACCESS_KEY
 
 # file=2019_pacific_emissions_2021-03-19.scrubber
-# zip $file.zip $file.csv
-# az storage blob upload --container-name ecmeit --name $file.zip --file $file.zip --account-name $AZURE_STORAGE_ACCOUNT --account-key $AZURE_STORAGE_ACCESS_KEY
-# rm $file.zip
-# rm $file.csv
-
 # file=2019_east_emissions_2021-03-19.scrubber
-# zip $file.zip $file.csv
-# az storage blob upload --container-name ecmeit --name $file.zip --file $file.zip --account-name $AZURE_STORAGE_ACCOUNT --account-key $AZURE_STORAGE_ACCESS_KEY
-# rm $file.zip
-# rm $file.csv
-
-
-node upload/data2db.scrubber.js 0 2019
-node upload/data2db.scrubber.js 1 2019 2019_arctic_emissions_2021-03-19.scrubber.zip  --max-old-space-size=4000
-node upload/data2db.scrubber.js 1 2019 2019_pacific_emissions_2021-03-19.scrubber.zip  --max-old-space-size=4000
-node upload/data2db.scrubber.js 1 2019 2019_east_emissions_2021-03-19.scrubber.zip  --max-old-space-size=4000
-

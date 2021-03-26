@@ -156,9 +156,10 @@ sudo systemctl enable meit.service
 
 
 export DBNAME=meit
-export MAPD_USER=mapd
-export MAPD_PASSWORD=6gJ4G8=GbxZCtLAY
-export MAPD_PORT=6274
+export MAPD_USER=admin
+export MAPD_PASSWORD=HyperInteractive
+export MAPD_PORT=6278
 export MEIT_CSV=/var/lib/omnisci/nrc-data-files/
+
 export MEIT_CSV=/home/julien.cousineau/meit/data/
 
