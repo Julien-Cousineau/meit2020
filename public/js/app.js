@@ -34,7 +34,7 @@ App.prototype ={
     emission: 'nox',
     mapLayer:'mapmeit',
     mapDLayer:'mapmeit',
-    table:'DB_2015',
+    table:'DB_2019',
     tables:[{id:'DB_2015',checked:true},{id:'DB_2016'},{id:'DB_2017'},{id:'DB_2018'},{id:'DB_2019'}],
     stables:['DB_2019'],
     divider: 1000000,
@@ -44,8 +44,9 @@ App.prototype ={
     emissions:'',
     semissions:[],
     avgemissions:['inst_ph','ntu'],
+    unitGroup:'weight',
     unit:'t',
-    units:'',
+    units:{},
     years:'',
     year:'2015',
     container:"#home",
@@ -92,17 +93,34 @@ App.prototype ={
   },
   
   get emission(){return this.options.emission;},
-  set emission(value){this.options.emission=value;this.mapd.changeGroup();},
+  set emission(value){
+    this.options.emission=value;
+    this.unitGroup=this.emissions.find(item=>item.id===value)['unit'];
+    this.unit=this.units.find(item=>item.default)['id'];
+    this.divider=this.units.find(item=>item.default)['divider'];
+    this.mapd.changeGroup();
+  },
+  get unitdname(){return this.units.find(item=>item.id===this.unit).keyword;},
+  set unit(value){
+    this.options.unit=value;
+    this.divider = this.units.find(item=>item.id===value).divider;
+  },
   get divider(){return this.options.divider;},
   set divider(value){this.options.divider=value},
+  
+  get unitGroup(){return this.options.unitGroup},
+  set unitGroup(value){this.options.unitGroup=value},
   get unit(){return this.options.unit;},
-  get unitdname(){return this.units.find(item=>item.id===this.unit).keyword;},
-  set unit(value){this.options.unit=value;this.divider = this.units.find(item=>item.id===value).divider; },
+  get units(){
+    console.log(this.unitGroup)
+    return this.options.units[this.unitGroup];
+    
+  },
   get year(){return this.options.year;},
   set year(value){this.options.year=value;this.mapd.changeGroup();},
   
   // get AUTH0(){return this.options.AUTH0;},
-  get units(){return this.options.units;},
+  
   get years(){return this.options.years;},
   get keyTags(){return this.options.keyTags;},
   get panels(){return this.options.panels;},

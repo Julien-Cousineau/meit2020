@@ -296,8 +296,8 @@ MapD.prototype = {
     this.mapContainer.updateHexPaint(data.stops,data.minmax,data.colors);
   },
   getTotalMap:function(){
-    const {emission,divider}=this;
-    this.total.valuesAsync().then(data=>$('#totalnumber').text(formatTotal(data[emission]/divider)));
+    const {emission,divider,language}=this;
+    this.total.valuesAsync().then(data=>$('#totalnumber').text(formatTotal(data[emission]/divider,language)));
     this.getMap();
   },  
   getMap:function(panning){

@@ -108,13 +108,18 @@ Footer.prototype ={
       if(type==="gis")self.parent.mapContainer.changeLayer(panelid);
       
       if(type==="table")self.parent.table=panelid;
+      
       if(type==="table"){
         const emissions=self.parent.emissions;
         let lis=emissions.map(item=>`<li><a href="#" _id="{0}" keyword="{0}" disabled keywordType="text">{1}</a></li>`.format(item.id,item.keyword)).join("");
         $("#ul_emissions").html(lis);
         self.dropdownMenuFunc('emission');
+        
+    
+        
         self.parent.changeLabels();
       }
+     
       
       $inp.prop("checked", !$inp.prop("checked"));
       const $panel=$('.x_panel_container[panelid={0}]'.format(panelid));
@@ -137,6 +142,16 @@ Footer.prototype ={
       
       var _id = $(this).attr('_id');
       self.parent[name] = _id;
+      
+      if(name=="emission"){
+        const units=self.parent.units;
+        let ulis=units.map(item=>`<li><a href="#" _id="{0}" keyword="{0}" disabled keywordType="text">{1}</a></li>`.format(item.id,item.keyword)).join("");
+        $("#ul_units").html(ulis);
+        self.dropdownMenuFunc('unit');
+        self.parent.changeLabels();
+      }
+      
+      
       self.parent.refresh();
       
     });
@@ -166,15 +181,11 @@ Footer.prototype ={
   //   $('.menufortable ul').append(tablelis)
   // },
   html:function(){
-    const emissions=this.parent.options.emissions;
-    const units=this.parent.options.units;
+    const emissions=this.parent.emissions;
+    const units=this.parent.units;
     const years=this.parent.options.years;
-    const emission = this.parent.emission;
-    const divider = this.parent.divider;
-    const year = this.parent.year;
-    const emissionT = this.parent.emissions.find(item=>item.id===emission).keyword;
-    const unitT = units.find(item=>item.divider===divider).keyword;
-    const yearT = years.find(item=>item.id===year).keyword;
+    
+
 
     const tablelis = this.htmlli(this.parent.tables);
     const gislis = this.htmlli(this.parent.gis);

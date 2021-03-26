@@ -77,18 +77,6 @@ ExportC.prototype = {
   },
   get renderhtml(){
     const self=this;
-    const units=this.parent.options.units;
-    const years=this.parent.options.years;
-    // const tablelis = this.htmlli(this.parent.tables);
-    // const gislis = this.htmlli(this.parent.gis);
-    // const chartlis = this.htmlli(this.parent.charts);
-    // const emission = this.parent.emission;
-    // const divider = this.parent.divider;
-    // const year = this.parent.year;
-    // const emissionT = this.parent.emissions.find(item=>item.id===emission).keyword;
-    // const unitT = units.find(item=>item.divider===divider).keyword;
-    // const yearT = years.find(item=>item.id===year).keyword;    
-    // const table = this.parent.table;
     const bodyemissions = `<ul class="list-group">{0}</ul>`.format(this.parent.emissions.map(item=>{item.htmltype='htmlswitch';return item;})
                       .map(item=>self[item.htmltype](item)).join(""));
     

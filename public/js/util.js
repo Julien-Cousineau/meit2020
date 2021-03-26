@@ -119,13 +119,13 @@ const formatLegend=function(x){
     return s;
     
   }
-const formatTotal=function(x){
+const formatTotal=function(x,language='en'){
     var formatSi = d3.format(".6s");
     var formate = d3.format(".1e");
     var formatf = d3.format(".4n");
     var s = formatSi(x);
     
-    if(this.language =='en'){
+    if(language =='en'){
       switch (s[s.length - 1]) {
         case "k": return s.slice(0, -1) + " thousand";
         case "M": return s.slice(0, -1) + " million";
