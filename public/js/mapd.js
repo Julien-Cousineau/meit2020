@@ -137,6 +137,20 @@ MapD.prototype = {
   changeGroup:function(){
     const charts=this.parent.charts;
     const geomaps=this.geomaps;
+    this.crossFilter.removeGlobalFilters()
+    
+    if(this.parent.emission=="inst_ph"){
+      const a=this.crossFilter.filter(true)
+      a.filter("inst_ph > 0")
+    }
+    else if(this.parent.emission=="ntu") {
+      const a=this.crossFilter.filter(true)
+      a.filter("ntu > 0")
+    }
+    
+    
+    
+    
     for(let key in charts){
       let chart=charts[key];
       chart.dc.changeGroup();

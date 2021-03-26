@@ -163,3 +163,8 @@ export MEIT_CSV=/var/lib/omnisci/nrc-data-files/
 
 export MEIT_CSV=/home/julien.cousineau/meit/data/
 
+export DBNAME=meit
+export MAPD_USER=admin
+export MAPD_PASSWORD=HyperInteractive
+export MAPD_PORT=9090
+

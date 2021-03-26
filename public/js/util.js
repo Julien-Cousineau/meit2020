@@ -123,27 +123,46 @@ const formatTotal=function(x,language='en'){
     var formatSi = d3.format(".6s");
     var formate = d3.format(".1e");
     var formatf = d3.format(".4n");
-    var s = formatSi(x);
-    
-    if(language =='en'){
-      switch (s[s.length - 1]) {
-        case "k": return s.slice(0, -1) + " thousand";
-        case "M": return s.slice(0, -1) + " million";
-        case "G": return s.slice(0, -1) + " billion";
-        case "T": return s.slice(0, -1) + " trillion";
-        case "m": return formatf(x);
-     }
-    } else {
-      switch (s[s.length - 1]) {
-        case "k": return s.slice(0, -1) + " mille";
-        case "M": return s.slice(0, -1) + " million";
-        case "G": return s.slice(0, -1) + " milliard";
-        case "T": return s.slice(0, -1) + " billion";
-        case "m": return formatf(x);
-     }
+   
+    const locale=d3.locale({"decimal": ".",
+  "thousands": " ",
+  "grouping": [3],
+  "currency": ["$", ""],
+  "dateTime": "%a %b %e %X %Y",
+  "date": "%m/%d/%Y",
+  "time": "%H:%M:%S",
+  "periods": ["AM", "PM"],
+  "days": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+  "shortDays": ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+  "months": ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+  "shortMonths": ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"]
     }
+)
+    const formatn = locale.numberFormat(",.0f");
+    const formatn2 = locale.numberFormat(",.1f");
+    // var NL = d3.formatLocale ({"thousands": ","})
+    var s = formatSi(x);
+    var s = formatn(x);
+    
+    // if(language =='en'){
+    //   switch (s[s.length - 1]) {
+    //     case "k": return s.slice(0, -1) + " thousand";
+    //     case "M": return s.slice(0, -1) + " million";
+    //     case "G": return s.slice(0, -1) + " billion";
+    //     case "T": return s.slice(0, -1) + " trillion";
+    //     case "m": return formatf(x);
+    // }
+    // } else {
+    //   switch (s[s.length - 1]) {
+    //     case "k": return s.slice(0, -1) + " mille";
+    //     case "M": return s.slice(0, -1) + " million";
+    //     case "G": return s.slice(0, -1) + " milliard";
+    //     case "T": return s.slice(0, -1) + " billion";
+    //     case "m": return formatf(x);
+    // }
+    // }
      if(x==0){return s;}
      if (x< 0.001){return formate(x);}
-    
+      if (x< 10){return formatn2(x);}
      return s;
   }

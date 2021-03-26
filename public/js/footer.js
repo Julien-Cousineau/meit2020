@@ -86,7 +86,20 @@ Footer.prototype ={
     
   },
   dropdownMenu:function(name,list,title,tooltip){
-    let lis=list.map(item=>`<li><a href="#" _id="{0}" keyword="{0}" disabled keywordType="text">{1}</a></li>`.format(item.id,item.keyword)).join("");
+    let lis=[];
+    if(name=="emissions"){
+      ['air',"fuel","wash"].forEach(group=>{
+        const other=list.filter(item=>item.type==group).map(item=>`<li><a href="#" _id="{0}" keyword="{0}" disabled keywordType="text">{1}</a></li>`.format(item.id,item.keyword));  
+        
+        other.unshift(`<h6  _id="{0}" keyword="{0}" disabled keywordType="text">{1}</h6>`.format(group,group));
+        lis=lis.concat(other);
+      });
+      
+      lis=lis.join("")
+    } else {
+      lis=list.map(item=>`<li><a href="#" _id="{0}" keyword="{0}" disabled keywordType="text">{1}</a></li>`.format(item.id,item.keyword)).join("");  
+    }
+    
     let ul = `<ul class="dropdown-menu" id="ul_{0}">{1}</ul>`.format(name,lis);
     let html =`<div class="btn-group">
                 <div data-toggle="dropdown" data-toggle="tooltip" data-placement="top" title="{2}" keyword="{2}" keywordType="title">

@@ -563,7 +563,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	      });
 	      return filterString;
 	    }
-
+		function removeFilters(){
+			globalFilters=[]
+		}
 	    function filter(isGlobal) {
 	      var filter = {
 	        filter: filter,

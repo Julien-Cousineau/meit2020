@@ -41,6 +41,10 @@ ExportC.prototype = {
     // this.setDropzone();
     this.constructFunc();
   },
+  clear:function(){
+     $('#exportModal').remove();
+    this.render();
+  },
   constructFunc:function(){
     const self=this;
     const keywords = this.parent.keywords;

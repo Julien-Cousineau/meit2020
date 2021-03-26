@@ -35,14 +35,14 @@ App.prototype ={
     mapLayer:'mapmeit',
     mapDLayer:'mapmeit',
     table:'DB_2019',
-    tables:[{id:'DB_2015',checked:true},{id:'DB_2016'},{id:'DB_2017'},{id:'DB_2018'},{id:'DB_2019'}],
+    tables:[{id:'DB_2015'},{id:'DB_2016'},{id:'DB_2017'},{id:'DB_2018'},{id:'DB_2019',checked:true}],
     stables:['DB_2019'],
     divider: 1000000,
     keyTags:'',
     panels:'',
     charts:'',
     emissions:'',
-    semissions:[],
+    // semissions:[],
     avgemissions:['inst_ph','ntu'],
     unitGroup:'weight',
     unit:'t',
@@ -59,27 +59,34 @@ App.prototype ={
   get container(){return this.options.container;},
   get table(){return this.options.table;},
   // set table(value){this.options.table=value;if(this.loaded)this.mapd.createCrossFilter();},
+  
+  get washemissions(){
+    return this.options.emissions.filter(e=>e.type=="wash")
+  },
   set table(value){
-    
-    if(!this.options.stables.includes(value)&&!this.options.semissions.includes(this.emission))this.emission='nox';
+    if(!this.options.stables.includes(value)&&!this.washemissions.includes(this.emission))this.emission='nox';
     this.options.table=value;
     if(this.loaded)this.mapd.createCrossFilter();
+    this.ExportC.clear();
   },
   get tables(){return this.options.tables;},
-  set tables(value){this.options.tables=value;},
+  set tables(value){
+    this.options.tables=value;
+    
+  },
 
   get language(){return this.options.language;},
   set language(value){this.options.language=value;},
   get keywords(){return this.options.keywords;},
-  get emissions(){return this.getEmissions(this.table)},
+  get emissions(){
+   
+    return this.options.stables.includes(this.table)?this.options.emissions:this.options.emissions.filter(e=>e.type!="wash");
+  },
   get mapLayer(){return this.options.mapLayer;},
   set mapLayer(value){this.options.mapLayer=value;this.setmapDLayer();},
   get mapDLayer(){return this.options.mapDLayer;},
   
-  getEmissions(table){
-    return this.options.stables.includes(table)?this.options.emissions.concat(this.options.semissions):this.options.emissions;
-  },
-  // set mapDLayer(value){this.options.mapDLayer=value;},
+ 
   setmapDLayer:function(){
     const mapLayer=this.mapLayer;
     const zoom = this.mapContainer.zoom;
@@ -98,6 +105,8 @@ App.prototype ={
     this.unitGroup=this.emissions.find(item=>item.id===value)['unit'];
     this.unit=this.units.find(item=>item.default)['id'];
     this.divider=this.units.find(item=>item.default)['divider'];
+    
+    
     this.mapd.changeGroup();
   },
   get unitdname(){return this.units.find(item=>item.id===this.unit).keyword;},

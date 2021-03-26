@@ -433,6 +433,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return globalFilters;
 	      },
 	      getFilterString: getFilterString,
+	      // JULIEN
+	      removeGlobalFilters:removeGlobalFilters,
+	      // JULIEN
 	      getGlobalFilterString: getGlobalFilterString,
 	      getDimensions: function getDimensions() {
 	        return dimensions;
@@ -564,7 +567,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	      });
 	      return filterString;
 	    }
-
+	    // JULIEN
+		function removeGlobalFilters(){
+			globalFilters=[]
+		}
+		// JULIEN
 	    function filter(isGlobal) {
 	      var filter = {
 	        filter: filter,
