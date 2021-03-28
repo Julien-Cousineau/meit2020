@@ -48,6 +48,7 @@ const options ={
     trend:{'en':"Trend",'fr':"Tendance"},
     tooltip:{'en':"Tooltip",'fr':"Tooltip"},
     filters:{'en':"Filters",'fr':"Filtres"},
+    uniquetrip:{'en':"(# of unique trips:","fr":"(# de voyage unique:"},
     a_daterange:{'en':"Date",'fr':"Période"},
     a_ip:{'en':"IP",'fr':"PI"},
     a_shipct:{'en':"Class/Type",'fr':"Catégorie/Type"},

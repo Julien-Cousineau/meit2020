@@ -30,7 +30,7 @@ ExportC.prototype = {
   get emission(){return this.parent.emission;},
   get unit(){return this.parent.unit},
   get filters(){return this.parent.mapd.filters},
-  
+  get units(){return this.parent.units},
   construct:function(){
     
     this.render();
@@ -65,7 +65,7 @@ ExportC.prototype = {
       $('#exportdate').val(datestr);
       $('#exportdatabase').val(self.parent.table);
       $('#exportyear').val(self.parent.year);
-      $('#exportunit').val(self.parent.unit);
+      // $('#exportunit').val(self.parent.unit);
       $('#exportfilename').val(filename);
     });
     
@@ -89,8 +89,8 @@ ExportC.prototype = {
       {keyword:"username",id:"user",value:"username",htmltype:'htmlfixlabel'},
       {keyword:"date",id:"date",value:"2018-01-01",htmltype:'htmlfixlabel'},
       {keyword:"database",id:"database",value:"Table1",htmltype:'htmlfixlabel'},
-      {keyword:"unit",id:"unit",value:"xxx",htmltype:'htmlfixlabel'},
-      {keyword:"forecastyear",id:"year",value:"2015",htmltype:'htmlfixlabel'},
+      // {keyword:"unit",id:"unit",value:"xxx",htmltype:'htmlfixlabel'},
+      // {keyword:"forecastyear",id:"year",value:"2015",htmltype:'htmlfixlabel'},
       {keyword:"comments",id:"comments",value:"",htmltype:'htmlinputtext'},
       {keyword:"filename",id:"filename",value:"meit",htmltype:'htmlinputtext'},
       ];
@@ -267,12 +267,15 @@ ExportC.prototype = {
     const self=this;
     
     const wb = this.wb;
-    const divider = this.parent.divider;
+    
     const charts = this.parent.charts.reduce((final,chart)=>{if(obj.selectedcharts[chart.id].checked)final.push(chart);return final;},[]);
     const emissions = this.parent.emissions.reduce((final,emission)=>{if(obj.selectedemissions[emission.id].checked)final.push(emission);return final},[]);
     const keywords = this.parent.keywords;
     const language = this.parent.language;
     let header = [''].concat(emissions.map(function(emission){return emission.id;}));
+    const _units=this.parent.options.units;
+    const units=emissions.map(emission=>_units[emission.unit].find(u=>u.default))
+    const unitsHeader=[''].concat(units.map(u=>u.id))
     
     this.parent.mapd.export({charts:charts,emissions:emissions},function(err,obj){
       if(obj.meta==='process')return self.updateProgressBar(obj.data); 
@@ -285,11 +288,18 @@ ExportC.prototype = {
         
         let table=[];
         table.push(header);
+        table.push(unitsHeader)
+       
+        
+        
         for(let ikey=0,nrow=keys.length;ikey<nrow;ikey++){
           const key=keys[ikey];
+          
+          
           let row=[];
           for(let ie=0,ne=emissions.length;ie<ne;ie++){
             const e_name = emissions[ie].id;
+            const divider=units[ie].divider
             const index = cdata[ie].findIndex(item=>item.key0===key); 
             let value = Number.parseFloat(cdata[ie][index][e_name]/divider).toPrecision(7);
             row.push(value);

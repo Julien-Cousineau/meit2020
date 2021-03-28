@@ -94,6 +94,9 @@ MapD.prototype = {
       return this._reduceFunc(this.emission,year,this.parent.options.avgemissions,true);
     },this);
   },
+  reduceUnique:function(){
+    return [{expression: "APPROX_COUNT_DISTINCT(trip_id,1)",agg_mode:"CUSTOM",name: this.emission}]
+  },
   colorScheme:["#22A7F0", "#3ad6cd", "#d4e666"],
   createCharts:function(){
     const self=this;
@@ -133,6 +136,7 @@ MapD.prototype = {
   },
   createNumberDisplay:function(){
     this.total = this.crossFilter.groupAll().reduceMulti(this.reduceFunc);
+    this.unique = this.crossFilter.groupAll().reduce(this.reduceUnique());
   },
   changeGroup:function(){
     const charts=this.parent.charts;
@@ -147,10 +151,7 @@ MapD.prototype = {
       const a=this.crossFilter.filter(true)
       a.filter("ntu > 0")
     }
-    
-    
-    
-    
+
     for(let key in charts){
       let chart=charts[key];
       chart.dc.changeGroup();
@@ -160,6 +161,7 @@ MapD.prototype = {
       geomap.dc.changeGroup();
     };
     this.total.reduceMulti(this.reduceFunc);
+    this.unique.reduce(this.reduceUnique());
   },
   removeBadge:function(id,filter){
     const badge = this.badges[id][filter];
@@ -312,6 +314,7 @@ MapD.prototype = {
   getTotalMap:function(){
     const {emission,divider,language}=this;
     this.total.valuesAsync().then(data=>$('#totalnumber').text(formatTotal(data[emission]/divider,language)));
+    this.unique.valuesAsync().then(data=>$('#uniquetrip').text(formatTotal(data[emission],language)));
     this.getMap();
   },  
   getMap:function(panning){

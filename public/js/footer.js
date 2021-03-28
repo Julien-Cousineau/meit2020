@@ -216,7 +216,9 @@ Footer.prototype ={
                   {0}
                   <span class="number-display">&nbsp: </span>
                   <div class="number-display" id="totalnumber"></div>
+                 
                   {1}
+                  <span keyword="uniquetrip" keywordType="text">(# of unique trips:</span><span id="uniquetrip"></span><span>)</span>
                   
                 </div>
                 <div class="col-sm-4">
