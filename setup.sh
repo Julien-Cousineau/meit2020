@@ -168,3 +168,10 @@ export MAPD_USER=admin
 export MAPD_PASSWORD=HyperInteractive
 export MAPD_PORT=9090
 
+# LOGS
+cd /var/lib/omnisci/data/mapd_log
+vim /var/lib/omnisci/omnisci.conf
+
+sudo systemctl restart nginx
+sudo systemctl restart omnisci_server
+
