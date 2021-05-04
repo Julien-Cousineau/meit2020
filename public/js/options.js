@@ -243,7 +243,7 @@ const options ={
     // pm10:{en:'10µm Particulate Matter',fr:'Particules 10µm'}, 
     // pm:{en:'Particulate Matter',fr:'Particules'}, 
     // bc:{en:'Black Carbon',fr:'Carbone noir'},
-    air:{en:'???Air Emission???',fr:'??Air Emission???'},
+    air:{en:'Air Emission',fr:'Air Emission'},
     nox:{en:'NOx',fr:'NOx'}, 
     co:{en:'CO',fr:'CO'},
     hc:{en:'HC',fr:'HC'},
@@ -262,9 +262,9 @@ const options ={
     voc:{en:'VOC',fr:'COV'},
     
     
-    inst_ph:{en:'PH',fr:'??PH??'},
-    pahphe:{en:'PAHphe',fr:'??PAHphe??'},
-    ntu:{en:'NTU',fr:'??NTU??'}, 
+    inst_ph:{en:'PH',fr:'PH'},
+    pahphe:{en:'PAHphe',fr:'PAHphe'},
+    ntu:{en:'NTU',fr:'NTU'}, 
     nitrates:{en:'Nitrates',fr:'Nitrates'}, 
     vanadium:{en:'Vanadium',fr:'Vanadium'}, 
     nickle:{en:'Nickel',fr:'Nickel'}, 
@@ -273,7 +273,7 @@ const options ={
     mercury:{en:'Mercury',fr:'Mercure'}, 
     llead:{en:'Lead',fr:'Plomb'},
     tonnes:{en:'Washwater',fr:'??Washwater??'},
-    wash:{en:'???Washwater Emission???',fr:'??Washwater Emission???'},
+    wash:{en:'Washwater Emission',fr:'Washwater Emission'},
     
 
     

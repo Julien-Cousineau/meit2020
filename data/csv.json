@@ -47,6 +47,13 @@
         {"azure":"2019_pacific_emissions_2021-03-19.scrubber.zip","local":"2019_pacific_emissions_2021-03-19.scrubber.zip"},
         {"azure":"2019_east_emissions_2021-03-19.scrubber","local":"2019_east_emissions_2021-03-19.scrubber.zip"}
         ]
+    },
+     "Scrubberv3":{
+     "production":[
+        {"azure":"2019ArcticNoScrubber","local":"2019ArcticNoScrubber.scrubber.zip"},
+        {"azure":"2019EastWithScrubber","local":"2019EastWithScrubber.scrubber.zip"},
+        {"azure":"2019PacificWithScrubber","local":"2019PacificWithScrubber.zip"}
+        ]
     }
     
        
