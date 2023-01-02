@@ -115,12 +115,12 @@ Convert.prototype = {
     
     self.loopGeo(function(){
       self.loopHex(function(){
-        self.loopShip(function(){
+        // self.loopShip(function(){
           self.loopCSV(function(){
             util.checkMemory();
             callback();
           });
-        });
+        // });
       });  
     });
     
@@ -265,7 +265,7 @@ Convert.prototype = {
   },
   parseCSV:function(obj,callback){
     this.irow++;
-    const ships = this.SHIP.ships;
+    // const ships = this.SHIP.ships;
     for(let engine in ENGINES){
       
       
@@ -318,13 +318,13 @@ Convert.prototype = {
         const datetime=Date.parse(obj.date_time);
         // const datetime= Date.parse("2000-01-01T00:00:00");
         
-        if(!(ships[ship_id])){
-          if(!(this.missingid[ship_id])){
-            this.missingid[ship_id]=true;
-            // console.log(datetime)
-            // console.log("Cannot find ship_id : " + ship_id);
-          }
-        }
+        // if(!(ships[ship_id])){
+        //   if(!(this.missingid[ship_id])){
+        //     this.missingid[ship_id]=true;
+        //     // console.log(datetime)
+        //     // console.log("Cannot find ship_id : " + ship_id);
+        //   }
+        // }
         
         if(!(this.points[point_id])){
           const lng = parseFloat(obj.long) || 0;
@@ -391,18 +391,18 @@ Convert.prototype = {
         
         if(!(this.testing)){ping.hex_1   = this.hex_1[this.points[point_id]];}
         
-        for(let i=0,n=YEARS.length;i<n;i++){
-          const year=YEARS[i];
-          if(ships[ship_id]){
-            ping['nox'+year]=ships[ship_id].forecast[year][ping.engine][ping.meit].nox / 4.0 *256.0;
-            ping['other'+year]=ships[ship_id].forecast[year][ping.engine][ping.meit].sox / 4.0 *256.0;
-          } else{
-            ping['nox'+year]=1.0 / 4.0 *256.0;
-            ping['other'+year]=1.0 / 4.0 *256.0;
-          }
+        // for(let i=0,n=YEARS.length;i<n;i++){
+        //   const year=YEARS[i];
+        //   if(ships[ship_id]){
+        //     ping['nox'+year]=ships[ship_id].forecast[year][ping.engine][ping.meit].nox / 4.0 *256.0;
+        //     ping['other'+year]=ships[ship_id].forecast[year][ping.engine][ping.meit].sox / 4.0 *256.0;
+        //   } else{
+        //     ping['nox'+year]=1.0 / 4.0 *256.0;
+        //     ping['other'+year]=1.0 / 4.0 *256.0;
+        //   }
               
           
-        }
+        // }
         
         const data=this.options.scrapper?FIELDSS.map(f=>ping[f]):FIELDS.map(f=>ping[f]);
         this.iping++;

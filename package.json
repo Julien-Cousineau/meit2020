@@ -16,7 +16,6 @@
     "download-scrubber": "MEIT_YEAR=Scrubber  NODE_ENV=production node --max-old-space-size=3800 upload/azure-download-csv.js",
     "download-scrubber-2019": "MEIT_YEAR=Scrubberv2 NODE_ENV=production node upload/azure-download-csv.js",
     "download-scrubber-2019v3": "MEIT_YEAR=Scrubberv3 NODE_ENV=production node upload/azure-download-csv.js",
-    
     "start": "node server/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

@@ -1,4 +1,5 @@
-const YEARS = ['2020','2025','2030','2035','2040','2045','2050'];
+// const YEARS = ['2020','2025','2030','2035','2040','2045','2050'];
+const YEARS = [];
 exports.YEARS = YEARS;
 // exports.ENGINES = {'me':0,'ae':1,'bo':2};
 exports.ENGINES = {'me':'Main Engine','ae':'Auxiliary Engines','bo':'Boiler','voc':'VOC'};

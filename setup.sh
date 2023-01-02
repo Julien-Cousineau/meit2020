@@ -172,6 +172,7 @@ export MAPD_PORT=9090
 cd /var/lib/omnisci/data/mapd_log
 vim /var/lib/omnisci/omnisci.conf
 
+/var/lib/omnisci/nrc-data-files/
 sudo systemctl restart nginx
 sudo systemctl restart omnisci_server
 

@@ -8,6 +8,7 @@ const PASSWORD = process.env.MAPD_PASSWORD;
 const MAPD_PORT=process.env.MAPD_PORT;
 const to=(promise)=>promise.then(data => [null, data]).catch(err => [err]);
 
+
 class MapDServer {
   connect(){
     const connector = new Connector();
@@ -20,6 +21,7 @@ class MapDServer {
       .user(USER)
       .password(PASSWORD)
       .connect((err, results) => { 
+          console.log(err)
           if(err)return reject(err);
           resolve(results);
         }); 
@@ -42,6 +44,11 @@ class MapDServer {
     let queryStr = fs.readFileSync(schemafilepath, 'utf8').replace("tablename",tablename);
     console.log(queryStr);
     return this.query(queryStr,{});
+  }
+  groupBy(tablename,csvpath){
+    let queryStr = `COPY (SELECT ship_id,trip_id,ocountry,dcountry,otrip,dtrip,class,type,ip,mode,engine,lng,lat,meit,mapmeit,prov,hex_16,hex_4,hex_1,SUM(nox) as nox,SUM(co) as co,SUM(hc) as hc,SUM(nh3) as nh3,SUM(co2) as co2,SUM(ch4) as ch4,SUM(n2o) as n2o,SUM(sox) as sox,SUM(pm25) as pm25,SUM(pm10) as pm10,SUM(pm) as pm,SUM(bc) as bc,SUM(fuel_cons) as fuel_cons,SUM(voc) as voc from ${tablename} GROUP BY ship_id,trip_id,ocountry,dcountry,otrip,dtrip,class,type,ip,mode,engine,lng,lat,meit,mapmeit,prov,hex_16,hex_4,hex_1) TO '${csvpath}';`;
+    console.log(queryStr);
+    return this.query(queryStr,{})
   }
   copyData(tablename,csvpath){
     let queryStr = `copy ${tablename} from '${csvpath}'`;
