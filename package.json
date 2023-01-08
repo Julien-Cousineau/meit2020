@@ -28,7 +28,7 @@
     "adm-zip": "^0.4.14",
     "async": "^3.2.4",
     "axios": "^0.27.2",
-    "azure-storage": "^2.10.3",
+    "azure-storage": "^2.10.7",
     "body-parser": "^1.20.1",
     "cli-progress": "^3.6.0",
     "cors": "^2.8.5",
