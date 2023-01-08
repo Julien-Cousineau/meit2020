@@ -415,7 +415,7 @@ charts:[
   {id:'n2o',keyword: 'n2o',checked:true,unit:"weight",type:"air"},
   {id:'co2e',keyword: 'co2e',checked:true,unit:"weight",type:"air"},
   {id:'voc',keyword: 'voc',checked:true,unit:"weight",type:"air"},
-  {id:'fuel_cons',keyword: 'fuel_cons',checked:true,unit:"weight3",type:"fuel"},
+  {id:'fuel_cons',keyword: 'fuel_cons',checked:true,unit:"weight",type:"fuel"},
   
   // ],
   // semissions: [
