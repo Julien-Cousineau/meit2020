@@ -1,6 +1,6 @@
 const fs = require('fs');
 // const Connector = require("./node-connector");
-const Connector = require("@mapd/connector");
+const { MapdCon } = require("@mapd/connector");
 
 const DBNAME = process.env.DBNAME;
 const USER = process.env.MAPD_USER;
@@ -11,7 +11,7 @@ const to=(promise)=>promise.then(data => [null, data]).catch(err => [err]);
 
 class MapDServer {
   connect(){
-    const connector = new Connector();
+    const connector = new MapdCon();
     return new Promise((resolve, reject)=>{
       connector
       .protocol("http")
