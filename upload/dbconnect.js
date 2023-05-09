@@ -51,12 +51,12 @@ class MapDServer {
     return this.query(queryStr,{})
   }
   copyData(tablename,csvpath){
-    let queryStr = `copy ${tablename} from '${csvpath}'`;
+    let queryStr = `copy ${tablename} from '${csvpath}';`;
     console.log(queryStr);
     return this.query(queryStr,{});
   }
   dropTable(tablename){
-    const queryStr = `DROP TABLE IF EXISTS ${tablename}`;
+    const queryStr = `DROP TABLE IF EXISTS ${tablename};`;
     console.log(queryStr);
     return this.query(queryStr,{});
   }
