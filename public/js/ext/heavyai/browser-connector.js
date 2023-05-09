@@ -12866,17 +12866,18 @@ function XHRConnection(host, port, options) {
   host = host || window.location.host;
   port = port || window.location.port;
   var prefix = options.https ? 'https://' : 'http://';
-  var path = options.path || '/api';
+  var path = options.path || '/';
 
   if (port === '') {
     port = undefined;
   }
-
-  if (!port || port === 80 || port === '80') {
-    this.url = prefix + host + path;
-  } else {
-    this.url = prefix + host + ':' + port + path;
-  }
+  
+  this.url =  prefix + host + "/api"
+  // if (!port || port === 80 || port === '80') {
+  //   this.url = prefix + host + path;
+  // } else {
+  //   this.url = prefix + host + ':' + port + path;
+  // }
 
   //The sequence map is used to map seqIDs back to the
   //  calling client in multiplexed scenarios
