@@ -12866,7 +12866,7 @@ function XHRConnection(host, port, options) {
   host = host || window.location.host;
   port = port || window.location.port;
   var prefix = options.https ? 'https://' : 'http://';
-  var path = options.path || '/';
+  var path = options.path || '/api';
 
   if (port === '') {
     port = undefined;
