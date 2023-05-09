@@ -280,9 +280,9 @@ function buildClient(url, useBinaryProtocol) {
   var hostname = urlObj.hostname;
   var port = urlObj.port;
 
-  // if (port === "") {
-  //   port = protocol === "https:" ? "443" : "80";
-  // }
+  if (port === "") {
+    port = protocol === "https:" ? "443" : "80";
+  }
 
   var client = null;
 
