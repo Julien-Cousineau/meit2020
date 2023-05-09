@@ -28,7 +28,7 @@ sudo firewall-cmd --reload
 echo "
 
 export MEIT_PORT=8080
-export HEAVYAI_PORT=6274
+export MAPD_PORT=6278
 export DBNAME=meit
 
 export MEIT_PATH=/opt/meit
