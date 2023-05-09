@@ -277,7 +277,7 @@ if (true) {
 function buildClient(url, useBinaryProtocol) {
   var urlObj = new URL(url);
   var protocol = urlObj.protocol;
-  var hostname = urlObj.hostname;
+  var hostname = urlObj.href;
   var port = urlObj.port;
 
   if (port === "") {

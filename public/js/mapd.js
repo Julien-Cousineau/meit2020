@@ -59,6 +59,8 @@ MapD.prototype = {
        
        crossfilter.crossfilter(con, table).then(function(crossFilter){return self.crossFilterSetup(crossFilter);})
     });
+    var port = connector.port();
+    console.log("port",port);
   },
 
   crossFilterSetup:function(crossFilter){
