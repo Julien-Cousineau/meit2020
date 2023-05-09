@@ -112,5 +112,6 @@ dist
 *.mbtiles
 *.geojson
 *.hex
+package-lock.json
 setSecret.sh
 setSecret.txt
