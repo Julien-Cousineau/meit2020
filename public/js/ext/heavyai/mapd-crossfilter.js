@@ -463,13 +463,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    function getFieldsPromise(table) {
 	      return new Promise(function (resolve, reject) {
-	        _dataConnector.getFields(table, function (error, columnsArray) {
+	        _dataConnector.getFields(table, function (error, response) {
 	          if (error) {
 	            reject(error);
 	          } else {
 	            var columnNameCountMap = {};
 
-	            columnsArray.forEach(function (element) {
+	            response.columns.forEach(function (element) {
 	              var compoundName = table + "." + element.name;
 	              columnTypeMap[compoundName] = {
 	                table: table,
