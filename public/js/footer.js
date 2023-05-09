@@ -124,7 +124,14 @@ Footer.prototype ={
       
       if(type==="table"){
         const emissions=self.parent.emissions;
-        let lis=emissions.map(item=>`<li><a href="#" _id="{0}" keyword="{0}" disabled keywordType="text">{1}</a></li>`.format(item.id,item.keyword)).join("");
+        // let lis=emissions.map(item=>`<li><a href="#" _id="{0}" keyword="{0}" disabled keywordType="text">{1}</a></li>`.format(item.id,item.keyword)).join("");
+        let lis=[];
+        ['air',"fuel","wash"].forEach(group=>{
+          const other=emissions.filter(item=>item.type==group).map(item=>`<li><a href="#" _id="{0}" keyword="{0}" disabled keywordType="text">{1}</a></li>`.format(item.id,item.keyword));  
+          other.unshift(`<h6  _id="{0}" keyword="{0}" disabled keywordType="text">{1}</h6>`.format(group,group));
+          lis=lis.concat(other);
+        });
+        lis=lis.join("");
         $("#ul_emissions").html(lis);
         self.dropdownMenuFunc('emission');
         

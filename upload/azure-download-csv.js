@@ -1,9 +1,15 @@
-const azure = require('azure-storage');
 const fs = require('fs');
 const path = require('path');
-const blobSvc = azure.createBlobService();
-const cliProgress = require('cli-progress');
 
+const { BlobServiceClient }     = require("@azure/storage-blob");
+const accountName = process.env.AZURE_STORAGE_ACCOUNT;
+const accountKey = process.env.AZURE_STORAGE_ACCESS_KEY;
+if (!accountName) throw Error('Azure Storage accountName not found');
+if (!accountKey) throw Error('Azure Storage accountKey not found');
+const connectionString = `DefaultEndpointsProtocol=https;AccountName=${accountName};AccountKey=${accountKey};EndpointSuffix=core.windows.net`;
+const blobSvc = BlobServiceClient.fromConnectionString(connectionString);
+
+const cliProgress = require('cli-progress');
 
 const to=(promise)=>promise.then(data => [null, data]).catch(err => [err]);
 
