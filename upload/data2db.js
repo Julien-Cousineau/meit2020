@@ -24,6 +24,7 @@ const MEIT_CSV = process.env.MEIT_CSV;
 const f=async()=>{
   if(options==0){
     const [err0]=await to(db.dropTable(`DB_${MEIT_YEAR}`))
+    console.log(err0)
     const template = scrapper==1?'template.2022.scrubber.sql':'template.2022.sql';
     const [err1]=await to(db.createTable(`DB_${MEIT_YEAR}`,path.resolve('data','schema',template)))  
     console.log(err1,scrapper)
