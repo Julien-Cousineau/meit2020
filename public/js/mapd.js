@@ -43,7 +43,7 @@ MapD.prototype = {
     const self=this;
     const table=this.table;
     const keys = this.KEYS.mapd;
-    console.log(this.IP);
+    
     const connector = new DbCon();
     connector.protocol("https")    
     .host(this.IP)
@@ -59,8 +59,8 @@ MapD.prototype = {
        
        crossfilter.crossfilter(con, table).then(function(crossFilter){return self.crossFilterSetup(crossFilter);})
     });
-    var port = connector.port();
-    console.log("port",port);
+    
+    
   },
 
   crossFilterSetup:function(crossFilter){

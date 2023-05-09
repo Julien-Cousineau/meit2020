@@ -121,7 +121,7 @@ App.prototype ={
   set unitGroup(value){this.options.unitGroup=value},
   get unit(){return this.options.unit;},
   get units(){
-    console.log(this.unitGroup)
+    
     return this.options.units[this.unitGroup];
     
   },
@@ -143,7 +143,7 @@ App.prototype ={
   refresh:function(){
     const self=this;
     if(this.mapd){
-      console.log("refresh")
+      
       self.mapd.reSizeAll()
       // debounce(function(){self.mapd.reSizeAll()}, 100)
     }

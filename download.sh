@@ -24,8 +24,8 @@ function run(){
     
 }
 run 2015 "MEIT_Arctic MEIT_Pacific MEIT_East"
-run 2016 "MEIT_Arctic MEIT_Pacific MEIT_East"
-run 2017 "MEIT_Arctic MEIT_Pacific MEIT_East"
-run 2018 "MEIT_Arctic MEIT_Pacific MEIT_East"
-run 2019 "MEIT_Arctic MEIT_Pacific MEIT_East"
-run 2020 "MEIT_Arctic MEIT_Pacific MEIT_East"
+# run 2016 "MEIT_Arctic MEIT_Pacific MEIT_East"
+# run 2017 "MEIT_Arctic MEIT_Pacific MEIT_East"
+# run 2018 "MEIT_Arctic MEIT_Pacific MEIT_East"
+# run 2019 "MEIT_Arctic MEIT_Pacific MEIT_East"
+# run 2020 "MEIT_Arctic MEIT_Pacific MEIT_East"
