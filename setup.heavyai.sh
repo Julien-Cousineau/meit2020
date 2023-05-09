@@ -26,6 +26,13 @@ sudo firewall-cmd --reload
 
 # Set Environment Variables 
 echo "
+Services
+cd /etc/systemd/system/meit.service
+
+
+sudo /usr/bin/systemctl start meit
+systemctl status -l nginx
+systemctl status -l heavydb
 
 export MEIT_PORT=8080
 export MAPD_PORT=6278
