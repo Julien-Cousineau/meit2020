@@ -1,6 +1,6 @@
 const fs = require('fs');
 // const Connector = require("./node-connector");
-const { MapdCon } = require("@mapd/connector");
+const { DbCon  } = require("@heavyai/connector");
 
 const DBNAME = process.env.DBNAME;
 const USER = process.env.MAPD_USER;
@@ -11,7 +11,7 @@ const to=(promise)=>promise.then(data => [null, data]).catch(err => [err]);
 
 class MapDServer {
   connect(){
-    const connector = new MapdCon();
+    const connector = new DbCon();
     return new Promise((resolve, reject)=>{
       connector
       .protocol("http")
