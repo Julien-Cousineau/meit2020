@@ -43,10 +43,11 @@ MapD.prototype = {
     const self=this;
     const table=this.table;
     const keys = this.KEYS.mapd;
+    console.log(this.IP);
     const connector = new DbCon();
     connector.protocol("https")    
-    .host(this.IP+"/api")
-    .port("443")
+    .host(this.IP)
+    .port("/api")
     // .port(9092)
     // .host(this.IP)
     // .port(keys.port)
