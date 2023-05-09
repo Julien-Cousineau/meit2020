@@ -46,7 +46,7 @@ MapD.prototype = {
     const connector = new DbCon();
     connector.protocol("https")    
     .host(this.IP+"/api")
-    .port("")
+    .port(443)
     // .port(9092)
     // .host(this.IP)
     // .port(keys.port)
