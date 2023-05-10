@@ -32,6 +32,8 @@ cd /etc/systemd/system/meit.service
 
 sudo /usr/bin/systemctl start meit
 systemctl status -l nginx
+
+sudo /usr/bin/systemctl stop heavydb
 systemctl status -l heavydb
 
 export MEIT_PORT=8080
