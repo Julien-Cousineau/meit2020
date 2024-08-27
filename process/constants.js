@@ -35,6 +35,7 @@ exports.FIELDS=[
     'mode',
     'engine',
     'datetime',
+    'fuel_type'
     // 'point_id'
     ].concat(MAPFIELDS,EMISSIONS,noxfactors,otherfactors);
 
@@ -51,5 +52,6 @@ exports.FIELDSS=[
     'mode',
     'engine',
     'datetime',
+    'fuel_type'
     // 'point_id'
     ].concat(MAPFIELDS,EMISSIONS,SCRAPPER,noxfactors,otherfactors);    

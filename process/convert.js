@@ -369,11 +369,13 @@ Convert.prototype = {
         if(typeof obj.dest_country==="undefined")obj.dest_country="";
         if(typeof obj.trip_start_id==="undefined")obj.trip_start_id="";
         if(typeof obj.trip_end_id==="undefined")obj.trip_end_id="";
+        if(typeof obj.fuel_type==="undefined")obj.fuel_type="";
         
         ping.ocountry=obj.origin_country.replace(",", " ");
         ping.dcountry=obj.dest_country.replace(",", " ");
         ping.otrip=obj.trip_start_id.replace(",", " ");
         ping.dtrip=obj.trip_end_id.replace(",", " ");
+        ping.fuel_type=obj.fuel_type.replace(",", " ");
         
         ping.ip      = ip;
         // ping.point_id= point_id;
