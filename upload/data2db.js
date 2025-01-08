@@ -25,13 +25,13 @@ const f=async()=>{
   if(options==0){
     const [err0]=await to(db.dropTable(`DB_${MEIT_YEAR}`))
     console.log(err0)
-    const template = scrapper==1?'template.2022.scrubber.sql':'template.2022.sql';
+    const template = scrapper==1?'template.2024.scrubber.sql':'template.2022.sql';
     const [err1]=await to(db.createTable(`DB_${MEIT_YEAR}`,path.resolve('data','schema',template)))  
-    console.log(err1,scrapper)
+    console.log("option1",err1,scrapper)
   } else if (options==1){
     const file = path.resolve(MEIT_CSV,name);
     const [err2]=await to(db.copyData(`DB_${MEIT_YEAR}`,file))
-  console.log(err2)
+  console.log("option2",err2)
     
   } else if(options==2){
     const file = path.resolve(MEIT_CSV,name);
