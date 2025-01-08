@@ -13,7 +13,8 @@ app.use(cors());
 // app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json({ type: 'application/*+json' }))
-app.use('/',express.static(path.join('public')));  
+app.use('/',express.static(path.join('public')));
+app.use('/sim',express.static(path.join('sim')));  
 app.use('/tiles/', mbtiles);
 // app.use('/api', api);
 

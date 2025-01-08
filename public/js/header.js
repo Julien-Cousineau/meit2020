@@ -55,11 +55,12 @@ Header.prototype ={
     </div>
     <ul class="nav justify-content-end">
       <li class="nav-item">
+        <a class="nav-link active LGbtn2" href="sim" keyword="simulation" keywordType="text">Simulation</a>
+      </li>  
+      <li class="nav-item">        
         <a class="nav-link active LGbtn2" href="#" keyword="language" keywordType="text">Français</a>
       </li>
-      
-  
-      
+    
     </ul>
   </div>
 
