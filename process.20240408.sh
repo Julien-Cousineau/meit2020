@@ -1,16 +1,16 @@
 # Download
 
-# az storage blob download --container-name ecmeit --name 2015_arctic_Emissions --file data/csv/raw/zip/2015_arctic_Emissions.zip --account-name $AZURE_STORAGE_ACCOUNT --account-key $AZURE_STORAGE_ACCESS_KEY
+# az storage blob download --container-name ecmeit --name MEIT_2015_arctic_emissions --file data/csv/raw/zip/2015_arctic_Emissions.zip --account-name $AZURE_STORAGE_ACCOUNT --account-key $AZURE_STORAGE_ACCESS_KEY
 # az storage blob download --container-name ecmeit --name 2016_Arctic_Emissions --file data/csv/raw/zip/2016_Arctic_Emissions.zip --account-name $AZURE_STORAGE_ACCOUNT --account-key $AZURE_STORAGE_ACCESS_KEY
 # az storage blob download --container-name ecmeit --name 2017_arctic_Emissions --file data/csv/raw/zip/2017_Arctic_Emissions.zip --account-name $AZURE_STORAGE_ACCOUNT --account-key $AZURE_STORAGE_ACCESS_KEY
 # az storage blob download --container-name ecmeit --name 2018_arctic_Emissions --file data/csv/raw/zip/2018_Arctic_Emissions.zip --account-name $AZURE_STORAGE_ACCOUNT --account-key $AZURE_STORAGE_ACCESS_KEY
 # az storage blob download --container-name ecmeit --name 2019_arctic_Emissions --file data/csv/raw/zip/2019_Arctic_Emissions.zip --account-name $AZURE_STORAGE_ACCOUNT --account-key $AZURE_STORAGE_ACCESS_KEY
 # az storage blob download --container-name ecmeit --name 2020_arctic_Emissions --file data/csv/raw/zip/2020_Arctic_Emissions.zip --account-name $AZURE_STORAGE_ACCOUNT --account-key $AZURE_STORAGE_ACCESS_KEY
-# az storage blob download --container-name ecmeit --name 2021_Arctic_Emissions --file data/csv/raw/zip/2021_Arctic_Emissions.zip --account-name $AZURE_STORAGE_ACCOUNT --account-key $AZURE_STORAGE_ACCESS_KEY
+# az storage blob download --container-name ecmeit --name MEIT_2021_arctic_emissions --file data/csv/raw/zip/2021_Arctic_Emissions.zip --account-name $AZURE_STORAGE_ACCOUNT --account-key $AZURE_STORAGE_ACCESS_KEY
 # az storage blob download --container-name ecmeit --name 2022_arctic_Emissions --file data/csv/raw/zip/2022_Arctic_Emissions.zip --account-name $AZURE_STORAGE_ACCOUNT --account-key $AZURE_STORAGE_ACCESS_KEY
 # az storage blob download --container-name ecmeit --name 2023_arctic_Emissions --file data/csv/raw/zip/2023_Arctic_Emissions.zip --account-name $AZURE_STORAGE_ACCOUNT --account-key $AZURE_STORAGE_ACCESS_KEY
 
-# az storage blob download --container-name ecmeit --name 2015_pacific_Emissions --file data/csv/raw/zip/2015_pacific_Emissions.zip --account-name $AZURE_STORAGE_ACCOUNT --account-key $AZURE_STORAGE_ACCESS_KEY
+# az storage blob download --container-name ecmeit --name MEIT_2015_pacific_emissions --file data/csv/raw/zip/2015_pacific_Emissions.zip --account-name $AZURE_STORAGE_ACCOUNT --account-key $AZURE_STORAGE_ACCESS_KEY
 # az storage blob download --container-name ecmeit --name 2016_pacific_Emissions --file data/csv/raw/zip/2016_pacific_Emissions.zip --account-name $AZURE_STORAGE_ACCOUNT --account-key $AZURE_STORAGE_ACCESS_KEY
 # az storage blob download --container-name ecmeit --name 2017_pacific_Emissions --file data/csv/raw/zip/2017_pacific_Emissions.zip --account-name $AZURE_STORAGE_ACCOUNT --account-key $AZURE_STORAGE_ACCESS_KEY
 # az storage blob download --container-name ecmeit --name 2018_pacific_Emissions --file data/csv/raw/zip/2018_pacific_Emissions.zip --account-name $AZURE_STORAGE_ACCOUNT --account-key $AZURE_STORAGE_ACCESS_KEY
@@ -20,7 +20,7 @@
 # az storage blob download --container-name ecmeit --name 2022_pacific_Emissions --file data/csv/raw/zip/2022_pacific_Emissions.zip --account-name $AZURE_STORAGE_ACCOUNT --account-key $AZURE_STORAGE_ACCESS_KEY
 # az storage blob download --container-name ecmeit --name 2023_pacific_Emissions --file data/csv/raw/zip/2023_pacific_Emissions.zip --account-name $AZURE_STORAGE_ACCOUNT --account-key $AZURE_STORAGE_ACCESS_KEY
 
-# az storage blob download --container-name ecmeit --name 2015_east_Emissions --file data/csv/raw/zip/2015_east_Emissions.zip --account-name $AZURE_STORAGE_ACCOUNT --account-key $AZURE_STORAGE_ACCESS_KEY
+# az storage blob download --container-name ecmeit --name MEIT_2015_east_emissions --file data/csv/raw/zip/2015_east_Emissions.zip --account-name $AZURE_STORAGE_ACCOUNT --account-key $AZURE_STORAGE_ACCESS_KEY
 # az storage blob download --container-name ecmeit --name 2016_east_Emissions --file data/csv/raw/zip/2016_east_Emissions.zip --account-name $AZURE_STORAGE_ACCOUNT --account-key $AZURE_STORAGE_ACCESS_KEY
 # az storage blob download --container-name ecmeit --name 2017_east_Emissions --file data/csv/raw/zip/2017_east_Emissions.zip --account-name $AZURE_STORAGE_ACCOUNT --account-key $AZURE_STORAGE_ACCESS_KEY
 # az storage blob download --container-name ecmeit --name 2018_east_Emissions --file data/csv/raw/zip/2018_east_Emissions.zip --account-name $AZURE_STORAGE_ACCOUNT --account-key $AZURE_STORAGE_ACCESS_KEY
@@ -84,36 +84,36 @@ function run(){
     fi        
 }
 # Arctic
-# run data/csv/raw/zip/MEIT_2015_arctic_emissions_2024-xx-xx.csv arctic_2015
+# run data/csv/raw/zip/MEIT_2015_arctic_emissionsFUEL.csv arctic_2015
 # run data/csv/raw/zip/MEIT_2016_arctic_emissions_2024-07-16.csv arctic_2016
 # run data/csv/raw/zip/MEIT_2017_arctic_emissions_2024-07-15.csv arctic_2017
 # run data/csv/raw/zip/MEIT_2018_arctic_emissions_2024-07-15.csv arctic_2018
 # run data/csv/raw/zip/MEIT_2019_arctic_emissions_2024-07-15.csv arctic_2019
 # run data/csv/raw/zip/MEIT_2020_arctic_emissions_2024-07-15.csv arctic_2020
-# run data/csv/raw/zip/MEIT_2021_arctic_emissions_2024-xx-xx.csv arctic_2021
+run data/csv/raw/zip/MEIT_2021_arctic_emissions.csv arctic_2021
 # run data/csv/raw/zip/MEIT_2022_arctic_emissions_2024-07-15.csv arctic_2022
 # run data/csv/raw/zip/MEIT_2023_arctic_emissions_2024-07-15.csv arctic_2023
 
 # Pacific
-# run data/csv/raw/zip/MEIT_2015_pacific_emissions_2024-04-18.csv pacific_2015
+# run data/csv/raw/zip/MEIT_2015_pacific_emissionsFUEL.csv pacific_2015
 # run data/csv/raw/zip/MEIT_2016_pacific_emissions_2024-07-15.csv pacific_2016
-# run data/csv/raw/zip/MEIT_2017_pacific_emissions_2024-04-18.csv pacific_2017
-# run data/csv/raw/zip/MEIT_2018_pacific_emissions_2024-04-17.csv pacific_2018
-# run data/csv/raw/zip/MEIT_2019_pacific_emissions_2024-04-17.csv pacific_2019
-# run data/csv/raw/zip/MEIT_2020_pacific_emissions_2024-04-16.csv pacific_2020
-# run data/csv/raw/zip/MEIT_2021_pacific_emissions_2024-04-15.csv pacific_2021
-run data/csv/raw/zip/MEIT_2022_pacific_emissions_2024-07-15.csv pacific_2022
+# run data/csv/raw/zip/MEIT_2017_pacific_emissions_2024-07-15.csv pacific_2017
+# run data/csv/raw/zip/MEIT_2018_pacific_emissions_2024-07-15.csv pacific_2018
+# run data/csv/raw/zip/MEIT_2019_pacific_emissions_2024-07-15.csv pacific_2019
+# run data/csv/raw/zip/MEIT_2020_pacific_emissions_2024-07-15.csv pacific_2020
+# run data/csv/raw/zip/MEIT_2021_pacific_emissions_2024-07-15.csv pacific_2021
+# run data/csv/raw/zip/MEIT_2022_pacific_emissions_2024-07-15.csv pacific_2022
 # run data/csv/raw/zip/MEIT_2023_pacific_emissions_2024-07-15.csv pacific_2023
 
 # East
-# run data/csv/raw/zip/MEIT_2015_east_emissions_2024-04-18.csv east_2015
+# run data/csv/raw/zip/MEIT_2015_east_emissionsFUEL.csv east_2015
 # run data/csv/raw/zip/MEIT_2016_east_emissions_2024-07-15.csv east_2016
-# run data/csv/raw/zip/MEIT_2017_east_emissions_2024-04-18.csv east_2017
-# run data/csv/raw/zip/MEIT_2018_east_emissions_2024-04-17.csv east_2018
-# run data/csv/raw/zip/MEIT_2019_east_emissions_2024-04-17.csv east_2019
-# run data/csv/raw/zip/MEIT_2020_east_emissions_2024-04-16.csv east_2020
-# run data/csv/raw/zip/MEIT_2021_east_emissions_2024-04-15.csv east_2021
-run data/csv/raw/zip/MEIT_2022_east_emissions_2024-07-15.csv east_2022
+# run data/csv/raw/zip/MEIT_2017_east_emissions_2024-07-15.csv east_2017
+# run data/csv/raw/zip/MEIT_2018_east_emissions_2024-07-15.csv east_2018
+# run data/csv/raw/zip/MEIT_2019_east_emissions_2024-07-15.csv east_2019
+# run data/csv/raw/zip/MEIT_2020_east_emissions_2024-07-15.csv east_2020
+# run data/csv/raw/zip/MEIT_2021_east_emissions_2024-07-15.csv east_2021
+# run data/csv/raw/zip/MEIT_2022_east_emissions_2024-07-15.csv east_2022
 # run data/csv/raw/zip/MEIT_2023_east_emissions_2024-07-15.csv east_2023
 
 
